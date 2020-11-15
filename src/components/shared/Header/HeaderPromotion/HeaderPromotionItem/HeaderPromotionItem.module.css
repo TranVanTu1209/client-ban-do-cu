@@ -1,0 +1,16 @@
+/** @format */
+
+.HeaderPromotionItem {
+	position: relative;
+	display: flex;
+	align-items: center;
+  margin-left: 15px;
+  font-size: 14px;
+}
+.HeaderPromotionItem span {
+	color: white;
+	margin-left: 3px;
+}
+.HeaderPromotionItem svg {
+	color: var(--yellow-color);
+}

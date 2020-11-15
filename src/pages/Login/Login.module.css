@@ -1,0 +1,42 @@
+/** @format */
+
+.LoginForm {
+	width: 500px;
+	margin: 30px auto;
+	background-color: white;
+	padding: 40px 25px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
+	min-height: 505px;
+}
+.FormGroup {
+	margin: 15px 0;
+}
+.LoginForm h3 {
+	font-size: 24px;
+	font-weight: 500;
+	text-align: center;
+}
+.LoginForm input,
+.LoginForm select {
+	display: block;
+	padding: 8px;
+	font-size: 16px;
+	width: 100%;
+	border: 1px solid #bbb;
+	border-radius: 3px;
+}
+
+input[type="radio"] {
+	display: inline-block;
+	width: auto;
+}
+
+.InputLabel {
+	margin-right: 15px;
+}
+
+.InputLabel span {
+	margin-left: 5px;
+	cursor: pointer;
+}

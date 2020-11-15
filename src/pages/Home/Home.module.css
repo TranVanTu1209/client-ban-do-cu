@@ -1,0 +1,15 @@
+/** @format */
+
+.HomeTop {
+	display: flex;
+}
+.HomeAdsContainer {
+	width: 78%;
+	display: flex;
+	height: 40vh;
+}
+.RightAds {
+	width: 40%;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}

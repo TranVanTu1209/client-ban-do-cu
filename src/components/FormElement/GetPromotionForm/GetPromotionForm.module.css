@@ -1,0 +1,13 @@
+/** @format */
+
+.GetPromotionForm {
+	display: flex;
+}
+.GetPromotionForm input {
+	flex: 1;
+	border: 1px solid #aaa;
+	padding: 5px 10px;
+	border-radius: 3px;
+  margin-right: 10px;
+  font-size: 14px;
+}

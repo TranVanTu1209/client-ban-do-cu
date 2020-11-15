@@ -1,0 +1,17 @@
+/** @format */
+
+.Spinner {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.7);
+}
+.Spinner img {
+	width: 100px;
+}

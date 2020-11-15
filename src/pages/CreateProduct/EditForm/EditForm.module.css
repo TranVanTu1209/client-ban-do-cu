@@ -1,0 +1,19 @@
+/** @format */
+
+.EditForm {
+	background-color: white;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+	margin: 15px 0;
+	padding: 15px;
+}
+.EditForm h3 {
+	font-weight: 500;
+	font-size: 24px;
+	text-align: center;
+}
+.Mb2 {
+	margin-bottom: 15px;
+}
+.EditForm button {
+	margin-right: 15px;
+}

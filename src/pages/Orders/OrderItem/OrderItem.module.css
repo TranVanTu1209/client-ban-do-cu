@@ -1,0 +1,32 @@
+/** @format */
+
+.OrderItem {
+	background-color: white;
+	margin: 15px 0;
+	padding: 15px;
+	border-radius: 3px;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+.orderImage {
+	width: 80px;
+}
+.OrderItem header strong {
+	font-weight: 500;
+	color: red;
+}
+.OrderItem header {
+	display: flex;
+	border-bottom: 1px solid #ccc;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 15px;
+}
+.OrderInfo {
+	margin-top: 15px;
+	line-height: 1.8;
+}
+.OrderInfo h3,
+.OrderInfo strong {
+	font-weight: 500;
+	color: #333;
+}

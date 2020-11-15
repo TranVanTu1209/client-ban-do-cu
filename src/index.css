@@ -1,0 +1,232 @@
+/** @format */
+
+:root {
+	--primary-color: #1d2671;
+	--secondary-color: #614385;
+	--yellow-color: #f1d53f;
+	--orange-color: #ff6927;
+	--danger-color: #d40808;
+	--success-color: rgb(24, 124, 24);
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+		"Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+		sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	background-color: #f5f5f5;
+	color: #333;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+a {
+	text-decoration: none;
+}
+ul,
+li {
+	list-style: none;
+}
+
+input:focus,
+button:focus {
+	outline: none;
+}
+button {
+	cursor: pointer;
+}
+button:disabled {
+	cursor: not-allowed;
+}
+.badge {
+	margin: 0 5px;
+	padding: 4px 10px;
+	border-radius: 5px;
+	background-color: #f5f5f5;
+	color: #333;
+	font-weight: 600;
+}
+.badge-yellow {
+	background-color: var(--yellow-color);
+}
+.slick-next {
+	right: 10px !important;
+}
+.slick-slide img {
+	width: 100%;
+}
+.slick-prev {
+	left: 10px !important;
+	z-index: 5;
+}
+.text-red {
+	color: var(--danger-color);
+}
+.lead {
+	font-size: 13px;
+	font-weight: 500;
+	margin: 5px 0;
+}
+.line-through {
+	text-decoration: line-through;
+	color: #555;
+	font-weight: 500;
+}
+.lg-container {
+	max-width: 1330px;
+	margin: auto;
+}
+.container {
+	max-width: 1280px;
+	margin: auto;
+}
+.btn {
+	padding: 4px 10px;
+	border-radius: 3px;
+	font-size: 14px;
+	font-weight: 500;
+	border: none;
+	background-color: #f5f5f5;
+	color: #444;
+	cursor: pointer;
+}
+.btn-primary {
+	background-color: var(--primary-color);
+	color: white;
+}
+.btn-success {
+	background-color: var(--success-color);
+	color: white;
+}
+.btn-secondary {
+	background-color: var(--secondary-color);
+	color: white;
+}
+.btn-yellow {
+	background-color: var(--yellow-color);
+	color: #333;
+}
+.btn-danger {
+	background-color: var(--danger-color);
+	color: white;
+}
+.bg-secondary {
+	background-color: var(--secondary-color) !important;
+	color: #fff !important;
+}
+.bg-danger {
+	background-color: var(--danger-color) !important;
+	color: #fff !important;
+}
+.bg-success {
+	background-color: var(--success-color) !important;
+	color: #fff !important;
+}
+.slick-prev:before,
+.slick-next:before {
+	font-size: 28px !important;
+	color: #444 !important;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.text-center {
+	text-align: center;
+	margin: 10px 0;
+	color: #555;
+}
+.custom-select {
+	position: relative;
+}
+.custom-select-menu {
+	position: absolute;
+	z-index: 30;
+	background-color: white;
+	width: 100%;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+	top: 25px;
+	height: 0;
+	overflow: hidden;
+	transition: all 0.3s ease-in-out;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+.custom-select:hover .custom-select-menu {
+	height: auto;
+}
+.custom-select-menu-item {
+	margin-bottom: 10px;
+	transition: all 0.3s ease-in-out;
+	padding: 8px;
+}
+.custom-select-menu-item:last-child {
+	margin-bottom: 0;
+}
+.custom-select-menu-item:hover {
+	background-color: var(--secondary-color);
+	color: white;
+}
+.MuiFormGroup-root {
+	flex-direction: row !important;
+}
+.error-text {
+	color: var(--danger-color);
+}
+.error-input {
+	border: 1px solid var(--danger-color) !important;
+}
+.mt-2 {
+	margin-top: 12px !important;
+}
+.mb-2 {
+	margin-bottom: 12px !important;
+}
+.mr-2 {
+	margin-right: 12px;
+}
+.mx-auto {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+}
+.ml-auto {
+	margin-left: auto;
+}
+.dashboard-link {
+	color: #555;
+	font-weight: 500;
+}
+.mt-3 {
+	margin-top: 15px !important;
+}
+.py-2 {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+.p-3 {
+	padding: 15px !important;
+}
+.d-flex {
+	display: flex;
+}
+.align-items-center {
+	align-items: center;
+}
+.justify-content-between {
+	justify-content: space-between;
+}
+.img-sm {
+	width: 40px;
+}
+.badge-active {
+	background-color: var(--success-color);
+	color: white;
+}

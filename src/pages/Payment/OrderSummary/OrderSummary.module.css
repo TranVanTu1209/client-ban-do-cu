@@ -1,0 +1,22 @@
+/** @format */
+.OrderSummary {
+	background-color: white;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.ItemList {
+	height: 250px;
+	overflow-y: scroll;
+}
+.Image {
+	width: 50px;
+	margin-right: 8px;
+}
+.ItemSummary {
+	display: flex;
+	margin-bottom: 10px;
+}
+.Info p {
+	font-size: 14px;
+}

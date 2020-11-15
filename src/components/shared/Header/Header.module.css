@@ -1,0 +1,9 @@
+/** @format */
+
+.Header {
+	padding-bottom: 10px;
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 15;
+}

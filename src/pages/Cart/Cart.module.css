@@ -1,0 +1,9 @@
+/** @format */
+
+.Cart h3 {
+	font-weight: 500;
+	color: #333;
+}
+.Cart h3 span {
+	font-weight: 400;
+}

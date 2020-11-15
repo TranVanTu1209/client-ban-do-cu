@@ -1,0 +1,50 @@
+/** @format */
+
+.CartProductItem {
+	background-color: white;
+	margin: 15px 0;
+	padding: 15px 10px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.Left {
+	display: flex;
+	justify-content: space-between;
+}
+.Left img {
+	width: 120px;
+	margin-right: 15px;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 10px;
+}
+.Left div {
+	flex: 1;
+}
+.Title {
+	font-size: 14px;
+}
+.Delivery {
+	color: green;
+	font-size: 14px;
+}
+.Info {
+	line-height: 1.6;
+}
+.Info button {
+	font-size: 14px !important;
+	color: rgb(218, 28, 28);
+	background-color: transparent;
+	border: none;
+}
+.CountInStock {
+	color: orange;
+	margin-bottom: 5px;
+	font-size: 13px;
+}
+.Right {
+	text-align: center;
+}
+.Right > div {
+	margin-bottom: 10px;
+}

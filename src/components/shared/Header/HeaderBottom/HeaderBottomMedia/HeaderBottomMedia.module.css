@@ -1,0 +1,15 @@
+/** @format */
+
+.HeaderBottomMedia {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	color: white;
+}
+.HeaderBottomMedia svg {
+	margin-right: 5px;
+	margin-top: 2px;
+}
+.HeaderBottomMedia span {
+	width: 100px;
+}

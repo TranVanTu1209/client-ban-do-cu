@@ -1,0 +1,19 @@
+/** @format */
+
+.FilterEngine {
+	display: flex;
+	align-items: center;
+}
+.FilterEngine > li {
+	cursor: pointer;
+	margin-right: 25px;
+	border-bottom: 2px solid transparent;
+	min-width: 140px;
+	text-align: center;
+	padding-bottom: 5px;
+	font-weight: 500;
+	color: #444;
+}
+.FilterEngine li:hover {
+	border-bottom-color: var(--secondary-color);
+}

@@ -1,0 +1,12 @@
+/** @format */
+
+.CategoryProducts {
+	background-color: white;
+	display: flex;
+	margin-bottom: 15px;
+}
+.cateList {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	flex: 1;
+}

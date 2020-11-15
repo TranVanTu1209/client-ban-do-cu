@@ -1,0 +1,48 @@
+/** @format */
+
+.SearchProduct {
+	display: flex;
+	align-items: center;
+	padding: 0 15px;
+	height: 40px;
+	position: relative;
+}
+.SearchProduct input {
+	flex: 1;
+	color: #777;
+	padding: 10px;
+	border: none;
+	height: 100%;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	font-size: 15px;
+}
+.SearchProduct button {
+	display: flex;
+	align-items: center;
+	padding: 6px 12px;
+	height: 100%;
+	background-color: #edeef2;
+	border: none;
+	color: #444;
+	font-size: 16px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+.Result {
+	position: absolute;
+	width: 95%;
+	background-color: white;
+	top: 43px;
+	height: 450px;
+	overflow-y: scroll;
+	border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.4);
+	transform: scale(0);
+	transition: transform 0.4s ease;
+	z-index: 100;
+}
+.Result.Show {
+	transform: scale(1);
+}

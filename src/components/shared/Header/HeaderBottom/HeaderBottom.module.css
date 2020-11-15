@@ -1,0 +1,15 @@
+/** @format */
+.HeaderBottomWrapper {
+	background-color: var(--secondary-color);
+	border-top: 1px solid #ccc;
+}
+
+.HeaderBottom {
+	padding: 10px 0;
+	display: flex;
+	justify-content: space-between;
+	overflow-x: scroll;
+}
+.HeaderBottom::-webkit-scrollbar {
+	display: none;
+}

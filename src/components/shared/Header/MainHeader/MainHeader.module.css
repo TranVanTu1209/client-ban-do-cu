@@ -1,0 +1,49 @@
+/** @format */
+.MainHeaderWrapper {
+	background-color: var(--secondary-color);
+}
+.MainHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 15px 0;
+}
+
+.MainHeaderCenter {
+	flex: 1;
+}
+.MainHeaderRight {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.MainHeaderRight__Option {
+	min-width: 130px;
+	display: flex;
+	align-items: center;
+	margin-left: 20px;
+	cursor: pointer;
+	color: white;
+	font-size: 15px;
+	line-height: 1.7;
+}
+.RightTitle {
+	width: 80px !important;
+	display: inline-block;
+}
+
+.MainHeaderRight__Option svg {
+	margin-right: 5px;
+}
+.MainHeaderRight a {
+	color: white;
+}
+.CartButton {
+	color: white;
+	display: flex;
+	align-items: center;
+	border: 2px solid #fff;
+	border-radius: 5px;
+	padding: 5px 10px;
+	margin-left: 10px;
+}

@@ -1,0 +1,53 @@
+/** @format */
+.HomeProduct {
+	padding: 15px;
+	transition: all 0.2s ease;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	position: relative;
+}
+.HomeProduct:hover {
+	box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.5);
+}
+.HomeProduct img {
+	width: 90%;
+	max-height: 160px;
+	object-fit: contain;
+}
+.Title {
+	font-size: 14px;
+	color: #444;
+	margin: 10px 0;
+	cursor: pointer;
+	height: 38px;
+}
+.Prices {
+	color: #444;
+}
+.SoldOutCard {
+	background-color: #ccc;
+	text-align: center;
+	color: #777;
+	border-radius: 25px;
+	padding: 2px 0;
+	margin-top: 10px;
+	cursor: not-allowed;
+}
+.AddToCartBtn {
+	background-color: var(--secondary-color);
+	width: 70%;
+	margin: auto;
+	display: block;
+	margin-top: 12px;
+	columns: white;
+	padding: 4px;
+	border: orange;
+	color: white;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.ReductionTag {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}

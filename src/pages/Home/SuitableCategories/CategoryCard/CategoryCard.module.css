@@ -1,0 +1,16 @@
+/** @format */
+.CategoryCard {
+	background-color: white;
+	margin-right: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 10px 0;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+.CategoryCard img {
+	width: 100px;
+}

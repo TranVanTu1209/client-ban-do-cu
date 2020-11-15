@@ -1,0 +1,15 @@
+/** @format */
+
+.ProfileContent input {
+	font-size: 14px;
+	padding: 6px 8px;
+	min-width: 350px;
+}
+.ProfileContent input[type="radio"] {
+	min-width: auto;
+	margin-left: 10px;
+	cursor: pointer;
+}
+.FormGroup {
+	margin-top: 10px !important;
+}

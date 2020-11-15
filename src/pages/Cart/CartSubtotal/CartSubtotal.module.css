@@ -1,0 +1,35 @@
+/** @format */
+
+.CartSubTotal {
+	background-color: white;
+	margin: 15px 0;
+	padding: 15px 10px;
+	line-height: 2;
+	position: sticky;
+	top: 15px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+.CartSubTotal h4 {
+	font-weight: 500;
+}
+.CartSubTotal hr {
+	margin-top: 15px;
+	background-color: #ccc;
+}
+.SubAmount {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 15px 0;
+}
+.SubAmount span {
+	font-weight: 500;
+}
+.Total {
+	font-size: 24px !important;
+	color: rgb(211, 14, 14);
+}
+.CheckOutBtn {
+	background-color: var(--secondary-color) !important;
+}

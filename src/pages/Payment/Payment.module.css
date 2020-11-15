@@ -1,0 +1,21 @@
+/** @format */
+
+.Payment {
+	background-color: white;
+	padding: 15px 25px;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+	border-radius: 3px;
+}
+.Payment h3 {
+	font-size: 24px;
+	font-weight: 500;
+}
+.FormGroup {
+	margin: 15px 0;
+	margin-bottom: 20px;
+}
+.Payment button {
+	margin-right: 15px;
+}
+

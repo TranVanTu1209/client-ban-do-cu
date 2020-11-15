@@ -1,0 +1,21 @@
+/** @format */
+
+.Alert {
+	background-color: #eee;
+	padding: 8px 16px;
+	border: 5px;
+	z-index: 1500;
+	position: relative;
+	border-radius: 5px;
+	font-weight: 500;
+	margin-top: 15px;
+	text-align: center;
+}
+.Alert.Success {
+	background-color: rgb(7, 148, 7);
+	color: white;
+}
+.Alert.Danger {
+	background-color: rgb(211, 16, 16);
+	color: white;
+}

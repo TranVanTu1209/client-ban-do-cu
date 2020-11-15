@@ -1,0 +1,18 @@
+/** @format */
+
+.HomeProductDetail {
+	display: flex;
+	align-items: center;
+	color: #444;
+	position: relative;
+}
+.HomeProductDetail img {
+	max-width: 250px;
+	margin: 15px;
+}
+.HomeProductDetail p {
+	margin-bottom: 10px;
+}
+.RightInfo {
+	padding: 15px;
+}

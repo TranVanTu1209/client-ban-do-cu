@@ -1,0 +1,14 @@
+/** @format */
+
+.AlertList {
+	position: fixed;
+	bottom: 20px;
+	right: 40px;
+	transition: all 0.4s ease;
+	background-color: transparent;
+	transform: translateY(150px);
+	z-index: 1500;
+}
+.AlertList.Show {
+	transform: translateY(0);
+}

@@ -1,0 +1,25 @@
+/** @format */
+
+.Badge {
+	display: inline-block;
+	padding: 3px;
+	background-color: #eee;
+	position: relative;
+	width: 42px;
+	text-align: center;
+}
+.Danger {
+	color: white;
+	background-color: var(--danger-color);
+}
+.Badge.Danger::after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 0;
+	bottom: -20px;
+	left: 1px;
+	border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+	border-top: 20px solid var(--danger-color);
+}

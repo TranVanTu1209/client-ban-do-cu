@@ -1,0 +1,22 @@
+/** @format */
+
+.OrdersHeader h3 {
+	font-weight: 500;
+}
+.OrdersHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 8px 0;
+}
+.OrdersHeader button {
+	margin-left: 15px;
+}
+.OrdersHeader ul {
+	display: flex;
+	align-items: center;
+}
+.UserList {
+	min-width: 200px !important;
+	margin-left: 15px !important;
+}

@@ -1,0 +1,68 @@
+/** @format */
+
+.HomeHotPriceProducts {
+	background-color: white;
+	margin: 20px 0;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	padding-bottom: 10px;
+}
+.HomeHotPriceProducts header {
+	padding: 15px 20px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #ddd;
+}
+.Center {
+	flex: 1;
+	padding: 0 15px;
+}
+.HomeHotPriceProducts header h3 {
+	font-style: italic;
+	color: var(--orange-color);
+}
+.HomeHotPriceProducts header a {
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	color: var(--primary-color);
+}
+.ListProduct {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 1rem;
+}
+.LoadMoreBtn {
+	display: block;
+	width: auto;
+	margin: 10px auto;
+	background-color: transparent;
+	border: 1px solid var(--secondary-color);
+	color: var(--secondary-color);
+	padding: 4px 10px;
+	border-radius: 3px;
+	transition: all 0.3s ease;
+}
+.LoadMoreBtn:hover {
+	background-color: var(--secondary-color);
+	color: white;
+}
+.Pagination {
+	margin: 18px 0;
+	width: 100%;
+	display: grid;
+	place-items: center;
+}
+
+@media (max-width: 1024px) {
+	.ListProduct {
+		grid-template-columns: repeat(4, 1fr);
+	}
+}
+
+@media (max-width: 768px) {
+	.ListProduct {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}

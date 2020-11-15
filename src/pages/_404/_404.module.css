@@ -1,0 +1,19 @@
+/** @format */
+
+._404 {
+	background-color: white;
+	min-height: 300px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+	margin: 15px 0;
+	border-radius: 3px;
+	line-height: 2;
+	color: #444;
+}
+._404 h1,
+._404 h3 {
+	font-weight: 500;
+}

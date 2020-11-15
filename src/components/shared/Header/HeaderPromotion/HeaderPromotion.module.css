@@ -1,0 +1,15 @@
+/** @format */
+.HeaderPromotionWrapper {
+	background-color: var(--primary-color);
+}
+.HeaderPromotion {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px 0;
+	align-items: center;
+	overflow-x: scroll;
+	min-width: 100%;
+}
+.HeaderPromotion::-webkit-scrollbar {
+	display: none;
+}
