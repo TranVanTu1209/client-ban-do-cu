@@ -6,10 +6,10 @@ const initialState = {
   isAuthenticated: authToken ? true : false,
   error: null,
   loading: false,
-  token: authToken ? authToken : null
+  token: authToken ? authToken : null,
 }
 
-const reducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type)
   {
@@ -23,7 +23,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.AUTH_REGISTER_SUCCESS:
       localStorage.setItem('authToken', payload);
       return {
-        ...state,
+        error: null,
         loading: false,
         isAuthenticated: true,
         token: payload
@@ -35,8 +35,16 @@ const reducer = (state = initialState, action) => {
         loading: false,
         error: payload
       }
+    case actionTypes.AUTH_LOGOUT: 
+      localStorage.removeItem('authToken');
+      return {
+        isAuthenticated: false,
+        error: null,
+        loading: false,
+        token: null,
+      }
     default: return state;
   }
 }
 
-export default reducer;
+export default authReducer;

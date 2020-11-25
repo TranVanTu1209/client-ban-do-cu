@@ -1,10 +1,12 @@
 import { all } from 'redux-saga/effects';
-import watcherAuth from './auth/auth';
+import watcherAuth from './user/auth';
+import watcherProfile from './user/profile';
 
 function* rootSaga() {
   yield all([
-    watcherAuth()
-  ])
+    watcherAuth(),
+    watcherProfile(),
+  ]);
 }
 
 export default rootSaga;

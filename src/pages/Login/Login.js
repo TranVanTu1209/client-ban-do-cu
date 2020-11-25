@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { useForm } from 'react-hook-form';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { register as registerSaga, login } from '../../store/actions/user/authAction';
 
 const Login = () => {
@@ -12,7 +12,6 @@ const Login = () => {
   const { loading } = useSelector(state => state.auth);
   const { register, handleSubmit, watch, errors } = useForm();
   const [loginMode, setLoginMode] = useState(true);
-  const history = useHistory();
 
   useEffect(() => {
     window.scrollTo({

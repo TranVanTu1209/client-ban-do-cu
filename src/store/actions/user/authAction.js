@@ -1,17 +1,6 @@
 import * as actionTypes from '../../actionTypes';
 import { db } from '../../../firebase/firebase';
 import { setAlert } from '..//alert/alertAction';
-import { clearCart } from '../cart/cartAction';
-import { clearOrder } from '../order/orderAction';
-
-export const logout = () => dispatch => {
-  dispatch({
-    type: actionTypes.LOGOUT
-  });
-  dispatch(clearCart());
-  dispatch(clearOrder());
-  dispatch(setAlert('Đăng xuất thành công', 'Success'));
-}
 
 export const setAuthUser = (uid, email) => dispatch => {
   dispatch({
@@ -101,4 +90,8 @@ export const loginFailed = (error) => ({
 export const login = (userData) => ({
   type: actionTypes.AUTH_LOGIN,
   userData
+});
+
+export const logout = () => ({
+  type: actionTypes.AUTH_LOGOUT
 });
