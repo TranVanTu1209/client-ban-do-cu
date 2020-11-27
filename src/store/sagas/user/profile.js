@@ -1,4 +1,4 @@
-import * as actionTypes from '../../actionTypes';
+import * as actionTypes from "../../types/public";
 import { put, takeEvery } from 'redux-saga/effects';
 import { getProfileFailed, getProfileSuccess, getProfileStart } from '../../actions/user/profileAction';
 import { logout } from '../../actions/user/authAction';

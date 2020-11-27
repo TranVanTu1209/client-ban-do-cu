@@ -1,13 +1,15 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import _404 from '../../pages/_404/_404';
 import { Grid } from '@material-ui/core';
 import Header from '../../components/admin/Header/Header';
 import SideMenu from '../../components/admin/SideMenu/SideMenu';
 import LazyWrapper from '../../utils/hoc/LazyWrapper';
+import EditCategory from '../../pages/admin/EditCategory/EditCategory';
 const Orders = React.lazy(() => import('../../pages/Orders/Orders'));
 const Customers = React.lazy(() => import('../../pages/admin/Customers/Customers'));
 const Categories = React.lazy(() => import('../../pages/admin/Categories/Categories'));
+const NewCategory = React.lazy(() => import('../../pages/admin/NewCategory/NewCategory'));
 const Products = React.lazy(() => import('../../pages/admin/Products/Products'));
 const Home = React.lazy(() => import('../../pages/admin/Home/Home'));
 
@@ -34,8 +36,17 @@ const AdminLayout = () => {
               <Route path="/dashboard/customer">
                 <LazyWrapper> <Customers /> </LazyWrapper>
               </Route>
-              <Route path="/dashboard/category">
+              <Route exact path="/dashboard/category">
                 <LazyWrapper> <Categories /> </LazyWrapper>
+              </Route>
+              <Route exact path="/dashboard/category/new">
+                <LazyWrapper> <NewCategory /> </LazyWrapper>
+              </Route>
+              <Route exact path="/dashboard/category/edit/:cId">
+                <LazyWrapper> <EditCategory /> </LazyWrapper>
+              </Route>
+              <Route path="/login">
+                <Redirect to="/"/>
               </Route>
               <Route component={_404} />
             </Switch>

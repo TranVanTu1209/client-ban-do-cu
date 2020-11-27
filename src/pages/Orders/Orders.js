@@ -7,11 +7,13 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import OrderItem from './OrderItem/OrderItem';
 import EmptyOrders from './EmptyOrders/EmptyOrders';
 import { Button, Select, MenuItem, FormControl, InputLabel } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 
-const Orders = ({ history }) => {
+const Orders = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const { orderItems, loading } = useSelector(state => state.order);
-  const { uid, email } = useSelector(state => state.auth);
+  const { email } = useSelector(state => state.auth);
   const { users } = useSelector(state => state.user);
   const [user, setUser] = useState('');
 
@@ -21,10 +23,6 @@ const Orders = ({ history }) => {
       behavior: 'smooth'
     });
   });
-
-  useEffect(() => {
-    if (!uid) history.push('/login');
-  }, [uid, history]);
 
   useEffect(() => {
     dispatch(fetchOrders());

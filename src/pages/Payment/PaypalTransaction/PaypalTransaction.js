@@ -16,7 +16,7 @@ const PaypalTransaction = ({ total, receiverInfo, cartItems }) => {
         return actions.order.create({
           purchase_units: [
             {
-              description: 'Thanh toán đơn đặt hàng từ tiki.vn',
+              description: 'Thanh toán đơn đặt hàng từ shop.vn',
               amount: {
                 currency_code: 'USD',
                 value: Number(total.toFixed(2)),

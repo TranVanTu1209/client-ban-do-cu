@@ -1,81 +1,44 @@
-import React, { useState } from 'react';
-import classes from './Sidebar.module.css';
-import ComputerIcon from '@material-ui/icons/Computer';
-import HeadsetIcon from '@material-ui/icons/Headset';
-import LaptopChromebookIcon from '@material-ui/icons/LaptopChromebook';
-import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
-import SidebarItem from './SidebarItem/SidebarItem';
-import SidebarItemCategories from './SidebarItemCategories/SidebarItemCategories';
+import React, { useEffect } from "react";
+import classes from "./Sidebar.module.css";
+import SidebarItem from "./SidebarItem/SidebarItem";
+import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
+import { getListCategory } from "../../../store/actions/public/category";
+import { useSelector, useDispatch } from "react-redux";
+import { Typography } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 const Sidebar = () => {
-  const [sidebarItems] = useState([
-    {
-      id: 'cate1',
-      Icon: PhoneAndroidIcon,
-      title: "Điện thoại - Máy tính bảng"
-    },
-    {
-      id: 'cate2',
-      Icon: ComputerIcon,
-      title: "Điện tử - Điện lạnh"
-    },
-    {
-      id: 'cate3',
-      Icon: HeadsetIcon,
-      title: "Phụ kiện - Thiết bị số"
-    },
-    {
-      id: 'cate4',
-      Icon: LaptopChromebookIcon,
-      title: "Laptop - Thiết bị IT"
-    },
-    {
-      id: 'cate5',
-      Icon: PhoneAndroidIcon,
-      title: "Điện thoại - Máy tính bảng"
-    },
-    {
-      id: 'cate6',
-      Icon: ComputerIcon,
-      title: "Điện tử - Điện lạnh"
-    },
-    {
-      id: 'cate7',
-      Icon: HeadsetIcon,
-      title: "Phụ kiện - Thiết bị số"
-    },
-    {
-      id: 'cate8',
-      Icon: LaptopChromebookIcon,
-      title: "Laptop - Thiết bị IT"
-    },
-    {
-      id: 'cate9',
-      Icon: PhoneAndroidIcon,
-      title: "Điện thoại - Máy tính bảng"
-    },
-    {
-      id: 'cate10',
-      Icon: ComputerIcon,
-      title: "Điện tử - Điện lạnh"
-    }
-  ]);
-  const [showSidebarItemCategories, setShowSidebarItemCategories] = useState(false);
-  const showSubCateHandler = () => setShowSidebarItemCategories(true);
-  const hideSubCateHandler = () => setShowSidebarItemCategories(false);
-
-  const sidebarItemsMarkup = sidebarItems.map(item => <SidebarItem openTab={showSubCateHandler} key={item.id}
-    closeTab={hideSubCateHandler} id={item.id} Icon={item.Icon} title={item.title}
-  />);
-
-  return (
-    <div className={classes.Sidebar} >
-      { sidebarItemsMarkup}
-      {
-        showSidebarItemCategories && <SidebarItemCategories openTab={showSubCateHandler} closeTab={hideSubCateHandler} />
-      }
-    </div>
+  const dispatch = useDispatch();
+  const { loading, error, categoryList } = useSelector(
+    (state) => state.categoryList
   );
-}
+  useEffect(() => {
+    dispatch(getListCategory());
+  }, [dispatch]);
+
+  let sidebarItemsMarkup;
+
+  if (loading) {
+    sidebarItemsMarkup = Array(10)
+      .fill(1)
+      .map((_, id) => (
+        <Typography key={id} component='div' variant='h3'>
+          <Skeleton />
+        </Typography>
+      ));
+  }
+  if(!loading && !error) {
+    sidebarItemsMarkup = categoryList.map((item) => (
+      <SidebarItem
+        key={item.id}
+        id={item.id}
+        Icon={DoubleArrowIcon}
+        title={item.name}
+      />
+    ));
+  }
+  
+  return <div className={classes.Sidebar}>{sidebarItemsMarkup}</div>;
+};
 
 export default Sidebar;

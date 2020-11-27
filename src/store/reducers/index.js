@@ -7,6 +7,7 @@ import orderReducer from './order/orderReducer';
 import alertReducer from './alert/alertReducer';
 import userReducer from './user/userReducer';
 import productByCategoryReducer from './product/productByCategoryReducer';
+import { categoryListReducer, categoryDetailReducer } from './public/category';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -16,7 +17,9 @@ const rootReducer = combineReducers({
   order: orderReducer,
   alert: alertReducer,
   user: userReducer,
-  productByCategory: productByCategoryReducer
+  productByCategory: productByCategoryReducer,
+  categoryList: categoryListReducer,
+  categoryDetail: categoryDetailReducer,
 });
 
 export default rootReducer;

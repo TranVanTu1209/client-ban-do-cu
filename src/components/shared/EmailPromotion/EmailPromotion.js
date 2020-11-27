@@ -10,7 +10,7 @@ const EmailPromotion = () => {
       <div className={classes.Left}>
         <img src="https://frontend.tikicdn.com/_desktop-next/static/img/footer/newsletter.png" alt="Email Icon" />
         <div>
-          <h5>Đăng ký nhận bản tin Tiki</h5>
+          <h5>Đăng ký nhận bản tin của shop</h5>
           <p>Đừng bỏ lỡ hàng ngàn sản phẩm và chương trình siêu hấp dẫn</p>
         </div>
       </div>

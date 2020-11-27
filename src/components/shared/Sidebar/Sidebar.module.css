@@ -5,4 +5,10 @@
 	border: 1px solid #ccc;
 	border-radius: 3px;
 	position: relative;
+	min-width: 200px;
+	height: 403px;
+	overflow-y: scroll;
+}
+.Sidebar::-webkit-scrollbar {
+	display: none;
 }

@@ -16,7 +16,7 @@ const HeaderPromotion = () => {
         <div className={classes.HeaderPromotion}>
           <HeaderPromotionItem Icon={TitleIcon} title="Ticket Box"
             urlPath="https://tiki.vn" showNotification={false} />
-          <HeaderPromotionItem Icon={AssistantIcon} title="Trợ lý Tiki"
+          <HeaderPromotionItem Icon={AssistantIcon} title="Trợ lý Shop"
             urlPath="https://tiki.vn" showNotification={false} />
           <HeaderPromotionItem Icon={AttachMoneyIcon} title="Ưu đãi đối tác"
             urlPath="https://tiki.vn" showNotification={false} />
@@ -26,7 +26,7 @@ const HeaderPromotion = () => {
             urlPath="https://tiki.vn" showNotification={false} />
           <HeaderPromotionItem Icon={LanguageIcon} title="Hàng quốc tế"
             urlPath="https://tiki.vn" showNotification={false} />
-          <HeaderPromotionItem Icon={MonetizationOnIcon} title="Bán hàng cùng Tiki"
+          <HeaderPromotionItem Icon={MonetizationOnIcon} title="Bán hàng cùng Shop"
             urlPath="https://tiki.vn" showNotification={false} />
         </div>
       </div>

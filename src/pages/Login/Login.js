@@ -6,10 +6,13 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { register as registerSaga, login } from '../../store/actions/user/authAction';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/lab/Alert';
+
 
 const Login = () => {
   const dispatch = useDispatch();
-  const { loading } = useSelector(state => state.auth);
+  const { loading, error } = useSelector(state => state.auth);
   const { register, handleSubmit, watch, errors } = useForm();
   const [loginMode, setLoginMode] = useState(true);
 
@@ -35,8 +38,16 @@ const Login = () => {
       {
         loading && <Spinner />
       }
+      {
+        error && <Snackbar open={true} autoHideDuration={6000}>
+        <Alert severity="success">
+        {error?.response?.data?.message ||
+            "Lỗi xảy ra. Vui lòng thử lại"}
+        </Alert>
+      </Snackbar>
+      }
       <form className={classes.LoginForm}>
-        <h3>Đăng nhập hoặc tạo tài khoản tiki</h3>
+        <h3>Đăng nhập hoặc tạo tài khoản Shop</h3>
         {
           !loginMode && <div className={classes.FormGroup}>
             <input className={`${errors.name ? 'error-input' : ''}`} placeholder="Họ tên" type="text"

@@ -1,4 +1,4 @@
-import * as actionTypes from "../../actionTypes";
+import * as actionTypes from "../../types/public";
 import { put, takeLeading } from "redux-saga/effects";
 import {
   registerStart,
@@ -8,15 +8,15 @@ import {
   loginSuccess,
   loginFailed,
 } from "../../actions/user/authAction";
-import { getProfile } from '../../actions/user/profileAction';
 import * as authApi from "../../api/user/auth";
+import axios from '../../api/axios';
 
 function* workerRegister(action) {
   yield put(registerStart());
   try {
     const res = yield authApi.registerRequest(action.userData);
     yield put(registerSuccess(res.data.access_token));
-    yield put(getProfile(res.data.access_token));
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
   } catch (error) {
     yield put(registerFailed(error));
   }
@@ -27,7 +27,7 @@ function* workerLogin(action) {
   try {
     const res = yield authApi.loginRequest(action.userData);
     yield put(loginSuccess(res.data.access_token));
-    yield put(getProfile(res.data.access_token));
+    axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
   } catch (error) {
     yield put(loginFailed(error));
   }

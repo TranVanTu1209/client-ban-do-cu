@@ -1,6 +1,19 @@
-import * as actionTypes from '../../actionTypes';
+import {
+  AUTH_REGISTER_START,
+  AUTH_REGISTER_SUCCESS,
+  AUTH_REGISTER_FAILED,
+  AUTH_LOGOUT,
+  AUTH_LOGIN_START,
+  AUTH_LOGIN_SUCCESS,
+  AUTH_LOGIN_FAILED,
+} from "../../types/public";
+import axios from '../../api/axios';
 
 const authToken = localStorage.getItem('authToken');
+
+if(authToken) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${authToken}`;
+}
 
 const initialState = {
   isAuthenticated: authToken ? true : false,
@@ -13,14 +26,14 @@ const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type)
   {
-    case actionTypes.AUTH_LOGIN_START:
-    case actionTypes.AUTH_REGISTER_START:
+    case AUTH_LOGIN_START:
+    case AUTH_REGISTER_START:
       return {
         ...state,
         loading: true
       }
-    case actionTypes.AUTH_LOGIN_SUCCESS:
-    case actionTypes.AUTH_REGISTER_SUCCESS:
+    case AUTH_LOGIN_SUCCESS:
+    case AUTH_REGISTER_SUCCESS:
       localStorage.setItem('authToken', payload);
       return {
         error: null,
@@ -28,14 +41,14 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         token: payload
       }
-    case actionTypes.AUTH_LOGIN_FAILED:
-    case actionTypes.AUTH_REGISTER_FAILED:
+    case AUTH_LOGIN_FAILED:
+    case AUTH_REGISTER_FAILED:
       return {
         ...state,
         loading: false,
         error: payload
       }
-    case actionTypes.AUTH_LOGOUT: 
+    case AUTH_LOGOUT: 
       localStorage.removeItem('authToken');
       return {
         isAuthenticated: false,

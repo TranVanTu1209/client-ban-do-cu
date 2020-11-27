@@ -8,6 +8,7 @@
 	padding: 10px;
 	color: #444;
 	transition: all 0.3s ease;
+	border-bottom: 1px solid #ddd;
 }
 .SidebarItem:hover,
 .SidebarItem.Active {

@@ -12,13 +12,18 @@ const SideMenu = () => {
           </Link>
         </ListItem>
         <ListItem button>
+          <Link to="/dashboard/category" className="dashboard-link">
+            Loại sản phẩm
+          </Link>
+        </ListItem>
+        <ListItem button>
           <Link to="/dashboard/customer" className="dashboard-link">
             Khách hàng
           </Link>
         </ListItem>
         <ListItem button>
-          <Link to="/dashboard/category" className="dashboard-link">
-            Loại sản phẩm
+          <Link to="/dashboard/vendor" className="dashboard-link">
+            Nhà cung cấp
           </Link>
         </ListItem>
         <ListItem button>
