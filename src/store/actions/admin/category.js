@@ -7,6 +7,10 @@ import {
   CATEGORY_DELETE_START,
   CATEGORY_DELETE_SUCCESS,
   CATEGORY_DELETE_FAILED,
+  CATEGORY_UPDATE,
+  CATEGORY_UPDATE_SUCCESS,
+  CATEGORY_UPDATE_FAILED,
+  CATEGORY_UPDATE_START,
 } from "../../types/admin";
 
 export const createCategory = (category) => ({ type: CATEGORY_CREATE, category });
@@ -22,6 +26,22 @@ export const createCategorySuccess = (category) => ({
 
 export const createCategoryFailed = (error) => ({
   type: CATEGORY_CREATE_FAILED,
+  payload: error,
+});
+
+export const updateCategory = (cId, category) => ({ type: CATEGORY_UPDATE, cId, category });
+
+export const updateCategoryStart = () => ({
+  type: CATEGORY_UPDATE_START,
+});
+
+export const updateCategorySuccess = (cId, category) => ({
+  type: CATEGORY_UPDATE_SUCCESS,
+  payload: {cId, category},
+});
+
+export const updateCategoryFailed = (error) => ({
+  type: CATEGORY_UPDATE_FAILED,
   payload: error,
 });
 

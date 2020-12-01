@@ -1,13 +1,15 @@
 import {
   CATEGORY_CREATE,
   CATEGORY_DELETE,
+  CATEGORY_UPDATE
 } from "../../types/admin";
-import { put, takeLeading, takeLatest } from 'redux-saga/effects';
+import { put, takeLeading } from 'redux-saga/effects';
 import { 
   createCategoryStart, createCategorySuccess, createCategoryFailed,
   deleteCategoryStart, deleteCategorySuccess, deleteCategoryFailed,
+  updateCategoryStart, updateCategorySuccess, updateCategoryFailed
  } from '../../actions/admin/category';
-import { createCategoryRequest, deleteCategoryRequest } from '../../api/admin/category';
+import { createCategoryRequest, deleteCategoryRequest, updateCategoryRequest } from '../../api/admin/category';
 import history from '../../../utils/history';
 
 function* workerCreateCategory(action) {
@@ -20,6 +22,19 @@ function* workerCreateCategory(action) {
   } catch (error)
   {
     yield put(createCategoryFailed(error));
+  }
+}
+
+function* workerUpdateCategory(action) {
+  yield put(updateCategoryStart());
+  try
+  {
+    yield updateCategoryRequest(action.cId, action.category);
+    yield put(updateCategorySuccess(action.cId, action.category));
+    history.back();
+  } catch (error)
+  {
+    yield put(updateCategoryFailed(error));
   }
 }
 
@@ -38,7 +53,8 @@ function* workerDeleteCategory(action) {
 
 function* watcherAdminCategory() {
   yield takeLeading(CATEGORY_CREATE, workerCreateCategory);
-  yield takeLatest(CATEGORY_DELETE, workerDeleteCategory);
+  yield takeLeading(CATEGORY_DELETE, workerDeleteCategory);
+  yield takeLeading(CATEGORY_UPDATE, workerUpdateCategory);
 }
 
 export default watcherAdminCategory;

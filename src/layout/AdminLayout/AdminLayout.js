@@ -6,11 +6,13 @@ import Header from '../../components/admin/Header/Header';
 import SideMenu from '../../components/admin/SideMenu/SideMenu';
 import LazyWrapper from '../../utils/hoc/LazyWrapper';
 import EditCategory from '../../pages/admin/EditCategory/EditCategory';
+import EditProduct from '../../pages/admin/EditProduct/EditProduct';
 const Orders = React.lazy(() => import('../../pages/Orders/Orders'));
 const Customers = React.lazy(() => import('../../pages/admin/Customers/Customers'));
 const Categories = React.lazy(() => import('../../pages/admin/Categories/Categories'));
 const NewCategory = React.lazy(() => import('../../pages/admin/NewCategory/NewCategory'));
 const Products = React.lazy(() => import('../../pages/admin/Products/Products'));
+const NewProduct = React.lazy(() => import('../../pages/admin/NewProduct/NewProduct'));
 const Home = React.lazy(() => import('../../pages/admin/Home/Home'));
 
 const AdminLayout = () => {
@@ -30,8 +32,14 @@ const AdminLayout = () => {
               <Route path="/dashboard/order">
                 <LazyWrapper> <Orders /> </LazyWrapper>
               </Route>
-              <Route path="/dashboard/product">
+              <Route exact path="/dashboard/product">
                 <LazyWrapper> <Products /> </LazyWrapper>
+              </Route>
+              <Route exact path="/dashboard/product/new">
+                <LazyWrapper> <NewProduct /> </LazyWrapper>
+              </Route>
+              <Route exact path="/dashboard/product/edit/:pId">
+                <LazyWrapper> <EditProduct /> </LazyWrapper>
               </Route>
               <Route path="/dashboard/customer">
                 <LazyWrapper> <Customers /> </LazyWrapper>

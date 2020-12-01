@@ -6,7 +6,7 @@ import { Link, useParams } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { useSelector, useDispatch } from "react-redux";
-import { createCategory } from "../../../store/actions/admin/category";
+import { updateCategory } from "../../../store/actions/admin/category";
 import { getCategoryDetail } from "../../../store/actions/public/category";
 import ImgLoader from "../../../components/UI/ImgLoader/ImgLoader";
 import Alert from "@material-ui/lab/Alert";
@@ -23,7 +23,7 @@ const EditCategory = () => {
     description: "",
   });
   useEffect(() => {
-    dispatch(getCategoryDetail(cId));
+    if (cId) dispatch(getCategoryDetail(cId));
   }, [dispatch, cId]);
 
   useEffect(() => {
@@ -45,21 +45,14 @@ const EditCategory = () => {
   };
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(createCategory(getCategoryDetail));
+    dispatch(updateCategory(cId, updatedCategory));
   };
-  console.log(category);
   return (
     <>
       <Paper className='p-4 bg-white rounded mt-3'>
-        {loading && <ImgLoader />}
-        {error && (
-          <Alert severity='error' className='mb-3'>
-            {error?.response?.data?.message || "Lỗi xảy ra. Vui lòng thử lại"}
-          </Alert>
-        )}
-        <h3 className='display-4 mb-3'>Cập nhật/Chỉnh sửa loại sản phẩm</h3>
         {!loading && !error && (
           <>
+            <h3 className='display-4 mb-3'>Cập nhật/Chỉnh sửa loại sản phẩm</h3>
             <form onSubmit={submitHandler}>
               <div className='form-group'>
                 <label htmlFor='name'>Tên loại sản phẩm</label>
@@ -98,6 +91,13 @@ const EditCategory = () => {
                   }}
                 />
               </div>
+              {loading && <ImgLoader />}
+              {error && (
+                <Alert severity='error' className='mb-3'>
+                  {error?.response?.data?.message ||
+                    "Lỗi xảy ra. Vui lòng thử lại"}
+                </Alert>
+              )}
               <Button variant='contained' type='submit' color='primary'>
                 Xác nhận
               </Button>

@@ -13,6 +13,9 @@ import {
   CATEGORY_DELETE_START,
   CATEGORY_DELETE_FAILED,
   CATEGORY_DELETE_SUCCESS,
+  CATEGORY_UPDATE_FAILED,
+  CATEGORY_UPDATE_SUCCESS,
+  CATEGORY_UPDATE_START,
 } from "../../types/admin";
 
 const categoryListInitialState = {
@@ -27,6 +30,7 @@ const categoryListReducer = (state = categoryListInitialState, action) => {
     case CATEGORY_LIST_GET_START:
     case CATEGORY_CREATE_START:
     case CATEGORY_DELETE_START:
+    case CATEGORY_UPDATE_START:
       return {
         ...state,
         loading: true,
@@ -49,9 +53,16 @@ const categoryListReducer = (state = categoryListInitialState, action) => {
         categoryList: state.categoryList.filter(c => c.id !== payload),
         error: null,
       };
+    case CATEGORY_UPDATE_SUCCESS:
+      return {
+        loading: false,
+        categoryList: state.categoryList.map(c => c.id === payload.cId ? payload.category : c),
+        error: null,
+      }
     case CATEGORY_LIST_GET_FAILED:
     case CATEGORY_CREATE_FAILED:
     case CATEGORY_DELETE_FAILED:
+    case CATEGORY_UPDATE_FAILED:
       return {
         ...state,
         loading: false,

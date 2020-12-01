@@ -19,11 +19,12 @@ const HomeProduct = ({ product }) => {
         <div className={classes.ReductionTag}>
           <Badge text={calculateReductionPercentage(product.price, product.originPrice)} type="Danger" />
         </div>
-        <img src={product.image} alt={product.title} />
+        {/* <img src={product.image || 'https://salt.tikicdn.com/cache/280x280/ts/product/bd/de/40/f9cf4776701057cbce1476fc725364b2.jpg'} alt={product.title} /> */}
+        <img src={'https://salt.tikicdn.com/cache/280x280/ts/product/bd/de/40/f9cf4776701057cbce1476fc725364b2.jpg'} alt={product.title} />
         <div>
           <p className={classes.Title} onClick={openModal}>
             {
-              formatProductTitle(product.title)
+              formatProductTitle(product.name)
             }
           </p>
           <div className={classes.Prices} >

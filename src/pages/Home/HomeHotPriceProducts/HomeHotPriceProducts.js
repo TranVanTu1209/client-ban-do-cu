@@ -8,11 +8,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button } from '@material-ui/core';
 import Pagination from '@material-ui/lab/Pagination';
 import Spinner from '../../../components/UI/Spinner/Spinner';
-import { fetchProducts } from '../../../store/actions/product/productAction';
+import { getProductList } from '../../../store/actions/public/product';
 const PRODUCTS_PER_PAGE = 10;
 
 const HomeHotPriceProducts = () => {
-  const { products, loading } = useSelector(state => state.product);
+  const { products, loading } = useSelector(state => state.productList);
   const [currentPage, setCurrentPage] = useState(0);
   const [homeProducts, setHomeProducts] = useState([]);
   const [priceRange, setPriceRange] = useState(0);
@@ -21,7 +21,7 @@ const HomeHotPriceProducts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProducts());
+    dispatch(getProductList());
   }, [dispatch]);
 
   useEffect(() => {
