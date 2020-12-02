@@ -11,7 +11,7 @@ import {
   PRODUCT_UPDATE_START,
   PRODUCT_UPDATE_SUCCESS,
   PRODUCT_UPDATE_FAILED,
-} from '../../types/admin';
+} from "../../types/admin";
 
 export const createProduct = (product) => ({ type: PRODUCT_CREATE, product });
 
@@ -45,7 +45,11 @@ export const deleteProductFailed = (error) => ({
   payload: error,
 });
 
-export const updateProduct = (pId, product) => ({ type: PRODUCT_UPDATE, pId, product });
+export const updateProduct = (pId, product) => ({
+  type: PRODUCT_UPDATE,
+  pId,
+  product,
+});
 
 export const updateProductStart = () => ({
   type: PRODUCT_UPDATE_START,
@@ -53,7 +57,7 @@ export const updateProductStart = () => ({
 
 export const updateProductSuccess = (pId, product) => ({
   type: PRODUCT_UPDATE_SUCCESS,
-  payload: {pId, product},
+  payload: { pId, product },
 });
 
 export const updateProductFailed = (error) => ({

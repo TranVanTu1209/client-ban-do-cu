@@ -20,7 +20,7 @@ const AdminLayout = () => {
     <React.Fragment>
       <Header />
       <div className="lg-container mt-2">
-        <Grid container spacing={3}>
+        <Grid container>
           <Grid item md={2}>
             <SideMenu />
           </Grid>

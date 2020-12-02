@@ -1,8 +1,10 @@
 import React from 'react';
 import { Divider, List, ListItem } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const SideMenu = () => {
+  const {userInfo} = useSelector(state => state.profile);
   return (
     <React.Fragment>
       <List component="nav">
@@ -36,6 +38,11 @@ const SideMenu = () => {
       <ListItem button>
         <Link to="/" className="dashboard-link">
           Về trang chủ
+        </Link>
+      </ListItem>
+      <ListItem button>
+        <Link to="/" className="dashboard-link">
+          Xin chào { userInfo?.name }
         </Link>
       </ListItem>
     </React.Fragment>

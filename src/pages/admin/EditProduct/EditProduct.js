@@ -70,7 +70,6 @@ const EditProduct = () => {
     dispatch(
       updateProduct(pId, {
         ...editProduct,
-        category_id: +editProduct.category_id,
       })
     );
   };
@@ -117,7 +116,7 @@ const EditProduct = () => {
                   fullWidth
                 >
                   {categoryList.map((c) => (
-                    <MenuItem key={c.id} value={c.name}>
+                    <MenuItem key={c.id} value={c.id}>
                       {c.name}
                     </MenuItem>
                   ))}

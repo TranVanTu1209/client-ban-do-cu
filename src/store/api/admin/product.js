@@ -10,6 +10,7 @@ export const createProductRequest = async (product) => {
 };
 
 export const updateProductRequest = async (pId, product) => {
+  console.log(pId, product);
   return axios.put(`/products/${pId}`, product, {
     headers: {
       'Content-type': 'application/json',

@@ -9,6 +9,9 @@
 .HomeProductDetail img {
 	max-width: 250px;
 	margin: 15px;
+	border: 1px solid #ccc;
+	padding: 8px;
+	border-radius: 5px;
 }
 .HomeProductDetail p {
 	margin-bottom: 10px;

@@ -10,9 +10,10 @@ const PaypalTransaction = ({ total, receiverInfo, cartItems }) => {
   const paypalRef = useRef();
   const dispatch = useDispatch();
   const history = useHistory();
+
   useEffect(() => {
     window.paypal.Buttons({
-      createOrder: (data, actions) => {
+      createOrder: (_, actions) => {
         return actions.order.create({
           purchase_units: [
             {
@@ -25,7 +26,7 @@ const PaypalTransaction = ({ total, receiverInfo, cartItems }) => {
           ],
         });
       },
-      onApprove: async (data, actions) => {
+      onApprove: async (_, actions) => {
         const order = await actions.order.capture();
         setPaidFor(true);
         dispatch(createOrder({ cartItems, total }, { ...receiverInfo, paypalInfo: order }, history));
@@ -40,7 +41,7 @@ const PaypalTransaction = ({ total, receiverInfo, cartItems }) => {
   }, [cartItems, dispatch, history, receiverInfo, total]);
   return (
     <div>
-      {error && <div>Uh oh, an error occurred! {error.message}</div>}
+      {error && <div>Lỗi xảy ra khi thanh toán bằng paypal! {error.message}</div>}
       {paidFor && <p>Thanh toán thành công</p>}
       <div ref={paypalRef} />
     </div>

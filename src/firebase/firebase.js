@@ -11,7 +11,6 @@ import firebase from 'firebase';
 //   measurementId: "G-9DBD8YGQRL"
 // };
 
-
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_KEY,
   authDomain: "tiki-80cb5.firebaseapp.com",

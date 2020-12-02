@@ -194,6 +194,15 @@ button:disabled {
 .mr-2 {
 	margin-right: 12px !important;
 }
+.py-2 {
+	padding: 12px 0;
+}
+.lead {
+	font-size: 18px;
+}
+.p-5 {
+	padding: 24px !important;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;

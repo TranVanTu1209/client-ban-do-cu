@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import classes from './Payment.module.css';
-import { Grid, TextField, Button, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
-import CartSubTotal from '../Cart/CartSubtotal/CartSubTotal';
-import { useSelector, useDispatch } from 'react-redux';
-import OrderSummary from './OrderSummary/OrderSummary';
-import { createOrder } from '../../store/actions/order/orderAction';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import { useHistory } from 'react-router-dom';
-import { getProfile } from '../../store/actions/user/authAction';
-import PaypalTransaction from './PaypalTransaction/PaypalTransaction';
+import React, { useState, useEffect } from "react";
+import classes from "./Payment.module.css";
+import {
+  Grid,
+  TextField,
+  Button,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+} from "@material-ui/core";
+import CartSubTotal from "../Cart/CartSubtotal/CartSubTotal";
+import { useSelector, useDispatch } from "react-redux";
+import OrderSummary from "./OrderSummary/OrderSummary";
+import { createOrder } from "../../store/actions/order/orderAction";
+import Spinner from "../../components/UI/Spinner/Spinner";
+import { useHistory } from "react-router-dom";
+import PaypalTransaction from "./PaypalTransaction/PaypalTransaction";
 
 const Payment = () => {
   const dispatch = useDispatch();
-  const { cart: { cartItems, subTotal, tax }, order: { loading }, auth: { profile, uid } } = useSelector(state => state);
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [postalCode, setPostalCode] = useState('');
-  const [deliveryMethod, setDeliveryMethod] = useState('cod');
-  const [paymentMethod, setPaymentMethod] = useState('check');
-  const [message, setMessage] = useState('');
+  const {
+    cart: { cartItems, subTotal, tax },
+    order: { loading },
+    profile: { userInfo },
+  } = useSelector((state) => state);
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
+  const [delivery_method, setDeliveryMethod] = useState("1");
+  const [payment_method, setPaymentMethod] = useState("2");
+  const [message, setMessage] = useState("");
   const [showPaypalBtn, setShowPaypalBtn] = useState(false);
   const [total, setTotal] = useState(0);
   const history = useHistory();
@@ -27,32 +36,34 @@ const Payment = () => {
   useEffect(() => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
-  });
+  }, []);
 
   useEffect(() => {
-    if (!profile) dispatch(getProfile(uid));
-  }, [dispatch, profile, uid]);
-
-  useEffect(() => {
-    if (profile)
-    {
-      setName(profile.name);
-      setAddress(profile.address);
-      setPhoneNumber(profile.phoneNumber);
+    if (userInfo) {
+      setName(userInfo.name);
+      setAddress(userInfo.address);
+      setPhoneNumber(userInfo.phone_number);
     }
-  }, [profile]);
+  }, [userInfo]);
 
   useEffect(() => {
-    setTotal(deliveryMethod === 'cod' ? (subTotal + tax + 25) : (subTotal + tax));
-  }, [deliveryMethod, subTotal, tax]);
+    setTotal(delivery_method === "1" ? subTotal + tax + 25 : subTotal + tax);
+  }, [delivery_method, subTotal, tax]);
 
-  const onConfirmCheckout = e => {
+  const onConfirmCheckout = (e) => {
     e.preventDefault();
-    const receiverInfo = { name, address, phoneNumber, postalCode, deliveryMethod, paymentMethod, message };
+    const receiverInfo = {
+      name,
+      address,
+      phone_number,
+      delivery_method,
+      payment_method,
+      message,
+    };
     dispatch(createOrder({ cartItems, total }, receiverInfo, history));
-  }
+  };
   return (
     <React.Fragment>
       {loading && <Spinner />}
@@ -63,60 +74,125 @@ const Payment = () => {
               <div>
                 <h3>Thông tin đặt hàng</h3>
                 <div className={classes.FormGroup}>
-                  <TextField fullWidth placeholder="Họ tên người nhận" value={name}
-                    onChange={e => setName(e.target.value)} />
+                  <TextField
+                    fullWidth
+                    placeholder='Họ tên người nhận'
+                    value={name}
+                    disabled={showPaypalBtn}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
                 <div className={classes.FormGroup}>
-                  <TextField fullWidth placeholder="Địa chỉ người nhận" value={address}
-                    onChange={e => setAddress(e.target.value)} />
+                  <TextField
+                    fullWidth
+                    placeholder='Địa chỉ người nhận'
+                    disabled={showPaypalBtn}
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
+                  />
                 </div>
                 <div className={classes.FormGroup}>
-                  <TextField fullWidth placeholder="Số điện thoại người nhận" value={phoneNumber}
-                    onChange={e => setPhoneNumber(e.target.value)} />
+                  <TextField
+                    fullWidth
+                    placeholder='Số điện thoại người nhận'
+                    disabled={showPaypalBtn}
+                    value={phone_number}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                  />
                 </div>
                 <div className={classes.FormGroup}>
-                  <TextField fullWidth placeholder="Mã bưu điện" value={postalCode}
-                    onChange={e => setPostalCode(e.target.value)} />
-                </div>
-                <div className={classes.FormGroup}>
-                  <TextField fullWidth placeholder="Ghi chú" value={message} multiline rows={3}
-                    onChange={e => setMessage(e.target.value)} />
+                  <TextField
+                    fullWidth
+                    placeholder='Ghi chú'
+                    value={message}
+                    disabled={showPaypalBtn}
+                    multiline
+                    rows={3}
+                    onChange={(e) => setMessage(e.target.value)}
+                  />
                 </div>
               </div>
               <div>
                 <h3>Phương thức vận chuyển</h3>
                 <div className={classes.FormGroup}>
-                  <RadioGroup value={deliveryMethod} onChange={e => setDeliveryMethod(e.target.value)}>
-                    <FormControlLabel value="cod" control={<Radio />} label="Ship COD" />
-                    <FormControlLabel value="onsite" control={<Radio />} label="Nhận hàng tại cửa hàng" />
+                  <RadioGroup
+                    value={delivery_method}
+                    onChange={(e) => setDeliveryMethod(e.target.value)}
+                  >
+                    <FormControlLabel
+                      value='1'
+                      control={<Radio disabled={showPaypalBtn} />}
+                      label='Ship COD'
+                    />
+                    <FormControlLabel
+                      value='2'
+                      control={<Radio disabled={showPaypalBtn} />}
+                      label='Nhận hàng tại cửa hàng'
+                    />
                   </RadioGroup>
-                  {
-                    deliveryMethod === 'cod' && <small> Phí vận chuyện COD  : 25.00 đ </small>
-                  }
+                  {delivery_method === "1" && (
+                    <small> Phí vận chuyện COD : 25.00 đ </small>
+                  )}
                 </div>
               </div>
               <div>
                 <h3>Phương thức thanh toán</h3>
                 <div className={classes.FormGroup}>
-                  <RadioGroup value={paymentMethod} onChange={e => {
-                    setPaymentMethod(e.target.value);
-                    setShowPaypalBtn(e.target.value === 'bank');
-                  }}>
-                    <FormControlLabel value="bank" control={<Radio />} label="Chuyển khoản online" />
-                    <FormControlLabel value="check" control={<Radio />} label="Thanh toán khi nhận hàng" />
+                  <RadioGroup
+                    value={payment_method}
+                    onChange={(e) => {
+                      setPaymentMethod(e.target.value);
+                      setShowPaypalBtn(
+                        e.target.value === "1" &&
+                          name &&
+                          address &&
+                          phone_number &&
+                          message
+                      );
+                    }}
+                  >
+                    <FormControlLabel
+                      value='1'
+                      control={<Radio />}
+                      label='Chuyển khoản online'
+                    />
+                    <FormControlLabel
+                      value='2'
+                      control={<Radio />}
+                      label='Thanh toán khi nhận hàng'
+                    />
                   </RadioGroup>
-                  {
-                    showPaypalBtn && name && address && phoneNumber && postalCode && <PaypalTransaction total={total} cartItems={cartItems}
-                      receiverInfo={{ name, address, phoneNumber, postalCode, deliveryMethod, paymentMethod, message }} />
-                  }
+                  {showPaypalBtn && (
+                    <PaypalTransaction
+                      total={total}
+                      cartItems={cartItems}
+                      receiverInfo={{
+                        name,
+                        address,
+                        phone_number,
+                        delivery_method,
+                        payment_method,
+                        message,
+                      }}
+                    />
+                  )}
                 </div>
               </div>
-              <h3 className="mb-2">Tổng tiền : {total.toFixed(2)} đ </h3>
-              <Button type="submit" variant="contained" color="primary" className="btn btn-secondary"
-                disabled={!(name && address && phoneNumber && postalCode)}>
+              <h3 className='mb-2'>Tổng tiền : {total.toFixed(2)} đ </h3>
+              <Button
+                type='submit'
+                variant='contained'
+                color='primary'
+                className='btn btn-secondary'
+                disabled={!(name && address && phone_number)}
+              >
                 Xác nhận đặt hàng
               </Button>
-              <Button variant="contained" color="secondary" onClick={() => history.push('/')}>
+              <Button
+                variant='contained'
+                color='secondary'
+                onClick={() => history.push("/")}
+              >
                 Hủy
               </Button>
             </form>
@@ -129,8 +205,5 @@ const Payment = () => {
       </Grid>
     </React.Fragment>
   );
-}
+};
 export default Payment;
-
-
-

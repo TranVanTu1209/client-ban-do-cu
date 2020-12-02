@@ -6,9 +6,9 @@ import _404 from '../../pages/_404/_404';
 import LazyWrapper from '../../utils/hoc/LazyWrapper';
 const Home = React.lazy(() => import('../../pages/Home/Home'));
 const CategoryProducts = React.lazy(() => import('../../pages/CategoryProducts/CategoryProducts'));
-// const Orders = React.lazy(() => import('../../pages/Orders/Orders'));
+const Orders = React.lazy(() => import('../../pages/Orders/Orders'));
 const Profile = React.lazy(() => import('../../pages/Profile/Profile'));
-// const Checkout = React.lazy(() => import('../../pages/Payment/Payment'));
+const Checkout = React.lazy(() => import('../../pages/Payment/Payment'));
 const Cart = React.lazy(() => import('../../pages/Cart/Cart'));
 
 const AuthLayout = () => {
@@ -27,10 +27,10 @@ const AuthLayout = () => {
             <LazyWrapper> <Cart /> </LazyWrapper>
           </Route>
           <Route path="/orders">
-            {/* <LazyWrapper> <Orders /> </LazyWrapper> */}
+            <LazyWrapper> <Orders /> </LazyWrapper>
           </Route>
           <Route path="/checkout">
-            {/* <LazyWrapper> <Checkout /> </LazyWrapper> */}
+            <LazyWrapper> <Checkout /> </LazyWrapper>
           </Route>
           <Route path="/profile">
             <LazyWrapper> <Profile /> </LazyWrapper>

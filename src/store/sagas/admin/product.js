@@ -21,16 +21,19 @@ import {
   deleteProductRequest,
   updateProductRequest,
 } from "../../api/admin/product";
+import { setAlert } from '../../actions/alert/alertAction';
 
-import history from "../../../utils/history";
+import history from 'history/browser';
 
 function* workerCreateProduct(action) {
   yield put(createProductStart());
   try {
     const res = yield createProductRequest(action.product);
+    yield history.push("/dashboard/product");
+    yield put(setAlert('Thêm mới sản phẩm thành công', 'Success'));
     yield put(createProductSuccess(res.data.data));
-    history.push("/dashboard/product");
   } catch (error) {
+    yield put(setAlert('Thêm mới sản phẩm thất bại', 'Danger'));
     yield put(createProductFailed(error));
   }
 }
@@ -48,9 +51,12 @@ function* workerDeleteProduct(action) {
 function* workerUpdateProduct(action) {
   yield put(updateProductStart());
   try {
-    yield updateProductRequest(action.pId);
-    yield put(updateProductSuccess(action.pId));
+    const res = yield updateProductRequest(action.pId, action.product);
+    yield history.push('/dashboard/product');
+    yield put(setAlert('Cập nhật sản phẩm thành công', 'Success'));
+    yield put(updateProductSuccess(action.pId, res.data));
   } catch (error) {
+    yield put(setAlert('Cập nhật sản phẩm thất bại', 'Danger'));
     yield put(updateProductFailed(error));
   }
 }

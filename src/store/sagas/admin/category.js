@@ -10,7 +10,8 @@ import {
   updateCategoryStart, updateCategorySuccess, updateCategoryFailed
  } from '../../actions/admin/category';
 import { createCategoryRequest, deleteCategoryRequest, updateCategoryRequest } from '../../api/admin/category';
-import history from '../../../utils/history';
+import history from 'history/browser';
+import { setAlert } from '../../actions/alert/alertAction';
 
 function* workerCreateCategory(action) {
   yield put(createCategoryStart());
@@ -18,9 +19,11 @@ function* workerCreateCategory(action) {
   {
     const res = yield createCategoryRequest(action.category);
     yield put(createCategorySuccess(res.data.data));
-    history.push('/dashboard/category');
+    yield put(setAlert('Thêm mới loại sản phẩm thành công', 'Success'));
+    yield history.push('/dashboard/category');
   } catch (error)
   {
+    yield put(setAlert('Thêm mới loại sản phẩm thất bại', 'Danger'));
     yield put(createCategoryFailed(error));
   }
 }
@@ -31,7 +34,7 @@ function* workerUpdateCategory(action) {
   {
     yield updateCategoryRequest(action.cId, action.category);
     yield put(updateCategorySuccess(action.cId, action.category));
-    history.back();
+    yield history.back();
   } catch (error)
   {
     yield put(updateCategoryFailed(error));

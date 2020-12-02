@@ -2,7 +2,6 @@ import * as actionTypes from '../../actionTypes';
 
 const initialState = {
   orderItems: [],
-  isPaid: false,
   loading: false,
   error: null
 }

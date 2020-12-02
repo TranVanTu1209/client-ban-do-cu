@@ -8,20 +8,20 @@ import { removeItemFromCart, increaseAmount, decreaseAmount } from '../../../sto
 
 const CartProductItem = forwardRef((props, ref) => {
   const dispatch = useDispatch();
-  const { item: { id, amount, image, title, price, originPrice } } = props;
+  const { item: { id, amount, image, name, price, originPrice, number } } = props;
   return (
     <div className={classes.CartProductItem} ref={ref}>
       <Grid container spacing={2}>
         <Grid item md={8}>
           <div className={classes.Left}>
-            <img src={image} alt={title} />
+            <img src={image} alt={name} />
             <div className={classes.Info}>
               <p className={classes.Title}>
-                {title}
+                {name}
               </p>
               <p className={classes.Delivery}>GIAO NHANH 2H</p>
               <p className={classes.CountInStock}>
-                Chỉ còn 4 sản phẩm
+                Chỉ còn { number } sản phẩm
               </p>
               <button onClick={() => dispatch(removeItemFromCart(id))}>
                 Xóa
@@ -33,16 +33,16 @@ const CartProductItem = forwardRef((props, ref) => {
           <div className={classes.Right}>
             <div>
               <p>
-                {price} đ
+                {price} đ/sp
               </p>
-              <p className="line-through"> {originPrice} đ </p>
+              <p className="line-through"> {originPrice} đ/sp </p>
             </div>
             <ButtonGroup size="small" aria-label="small outlined button group">
               <Button size="small" disabled={!(amount > 1)} onClick={() => dispatch(decreaseAmount(id))}>
                 <RemoveIcon />
               </Button>
               <Button size="small" disabled> {amount} </Button>
-              <Button size="small" onClick={() => dispatch(increaseAmount(id))}>
+              <Button size="small" disabled={(+number === amount)} onClick={() => dispatch(increaseAmount(id))}>
                 <AddIcon />
               </Button>
             </ButtonGroup>

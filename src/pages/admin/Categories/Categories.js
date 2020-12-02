@@ -71,7 +71,7 @@ const Categories = () => {
                   <TableCell> Chọn </TableCell>
                   <TableCell> # </TableCell>
                   <TableCell> Loại sản phẩm </TableCell>
-                  <TableCell> Mô tả </TableCell>
+                  <TableCell style={{ width: "200px" }}> Mô tả </TableCell>
                   <TableCell> Hành động </TableCell>
                 </TableRow>
               </TableHead>
@@ -97,11 +97,13 @@ const Categories = () => {
                           className='img-sm mr-2'
                         />
                         <Link to={`/dashboard/category/${c.id}`}>
-                          {formatProductTitle(c.name, 5)}{" "}
+                          {formatProductTitle(c.name, 5)}
                         </Link>
                       </div>
                     </TableCell>
-                    <TableCell> {c.description.replace(/<[^>]+>/g, '')} </TableCell>
+                    <TableCell style={{ width: "200px" }}>
+                      {c.description.replace(/<[^>]+>/g, "")}
+                    </TableCell>
                     <TableCell>
                       <IconButton
                         component={Link}

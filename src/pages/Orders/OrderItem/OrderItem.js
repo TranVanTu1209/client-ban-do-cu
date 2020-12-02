@@ -1,36 +1,66 @@
-import React from 'react';
-import classes from './OrderItem.module.css';
-import { Table, TableHead, TableBody, TableRow, TableCell, TableContainer } from '@material-ui/core';
-import { formatProductTitle } from '../../../utils/products/products';
-import { cancelOrder } from '../../../store/actions/order/orderAction';
-import { useDispatch } from 'react-redux';
+import React from "react";
+import classes from "./OrderItem.module.css";
+import {
+  Table,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableContainer,
+} from "@material-ui/core";
+import { formatProductTitle } from "../../../utils/products/products";
+import { cancelOrder } from "../../../store/actions/order/orderAction";
+import { useDispatch } from "react-redux";
 
-const OrderItem = ({ order: { id, total, cartItems, receiverInfo } }) => {
+const OrderItem = ({
+  order: {
+    id,
+    number,
+    products,
+    name,
+    payment_method,
+    delivery_method,
+    phone_number,
+    address,
+  },
+}) => {
   const dispatch = useDispatch();
-  const cartItemsMarkup = cartItems.map((item) => (
-    <TableRow key={item.id}>
+  const cartItemsMarkup = products.map((item) => (
+    <TableRow key={item?.product_id}>
       <TableCell>
-        <img className={classes.orderImage} src={item.image} alt={formatProductTitle(item.title)} />
+        <img
+          className={classes.orderImage}
+          src={item?.image}
+          alt={formatProductTitle(item?.name)}
+        />
       </TableCell>
-      <TableCell component="th" scope="row">
-        {formatProductTitle(item.title, 10)}
+      <TableCell component='th' scope='row'>
+        {formatProductTitle(item?.name, 10)}
       </TableCell>
-      <TableCell>{item.price} đ</TableCell>
-      <TableCell>{item.originPrice} đ</TableCell>
-      <TableCell>{item.amount}</TableCell>
+      <TableCell>{item?.price} đ</TableCell>
+      <TableCell>{item?.originPrice} đ</TableCell>
+      <TableCell>{item?.amount}</TableCell>
     </TableRow>
   ));
   return (
     <div className={classes.OrderItem}>
       <header>
-        <p>Đơn hàng : <strong>{id}</strong></p>
-        {
-          receiverInfo.paymentMethod !== 'bank' ? <button className="btn btn-danger" onClick={() => dispatch(cancelOrder(id))}>
-            Hủy đơn</button> : <button className="btn btn-success">Đã thanh toán</button>
-        }
+        <p>
+          Đơn hàng : <strong>{id}</strong>
+        </p>
+        {payment_method !== "1" ? (
+          <button
+            className='btn btn-danger'
+            onClick={() => dispatch(cancelOrder(id))}
+          >
+            Hủy đơn
+          </button>
+        ) : (
+          <button className='btn btn-success'>Đã thanh toán</button>
+        )}
       </header>
       <TableContainer>
-        <Table className={classes.table} aria-label="order list table">
+        <Table className={classes.table} aria-label='order list table'>
           <TableHead>
             <TableRow>
               <TableCell></TableCell>
@@ -40,28 +70,36 @@ const OrderItem = ({ order: { id, total, cartItems, receiverInfo } }) => {
               <TableCell> Số lượng </TableCell>
             </TableRow>
           </TableHead>
-          <TableBody>
-            {cartItemsMarkup}
-          </TableBody>
+          <TableBody>{cartItemsMarkup}</TableBody>
         </Table>
       </TableContainer>
       <div className={classes.OrderInfo}>
-        <p>Tổng giá trị đơn : {total.toFixed(2)} đ</p>
+        <p>Tổng giá trị đơn : {(+number).toFixed(2)} đ</p>
         <h3>Thông tin người nhận</h3>
         <p>
-          Họ tên : <strong>{receiverInfo.name}</strong>
+          Họ tên : <strong>{name}</strong>
         </p>
         <p>
-          Số điện thoại : <strong>{receiverInfo.phoneNumber}</strong>
+          Số điện thoại : <strong>{phone_number}</strong>
         </p>
         <p>
-          Địa chỉ : <strong>{receiverInfo.address}</strong>
+          Địa chỉ : <strong>{address}</strong>
         </p>
         <p>
-          Hình thức vận chuyển : <strong>{receiverInfo.deliveryMethod === 'cod' ? 'Giao hàng tận nơi' : 'Khách hàng đến lấy'}</strong>
+          Hình thức vận chuyển :{" "}
+          <strong>
+            {delivery_method === "1"
+              ? "Giao hàng tận nơi"
+              : "Khách hàng đến lấy"}
+          </strong>
         </p>
         <p>
-          Phương thức thanh toán : <strong>{receiverInfo.paymentMethod === 'bank' ? 'Chuyển khoản online' : 'Thanh toán khi nhận hàng'}</strong>
+          Phương thức thanh toán :{" "}
+          <strong>
+            {payment_method === "1"
+              ? "Chuyển khoản online"
+              : "Thanh toán khi nhận hàng"}
+          </strong>
         </p>
       </div>
     </div>
