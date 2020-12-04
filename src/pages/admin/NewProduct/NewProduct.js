@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import Input from '@material-ui/core/Input';
+import Input from "@material-ui/core/Input";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
@@ -28,7 +28,7 @@ const NewProduct = () => {
     price: 0,
     originPrice: 0,
     number: "",
-    status: "2",
+    status: "",
     color: "",
     size: "",
   });
@@ -76,27 +76,42 @@ const NewProduct = () => {
               required
             />
           </div>
-          <div className='form-group'>
-            <label htmlFor='category_id'>Loại sản phẩm</label>
-            <Select
-              id='category_id'
-              name='category_id'
-              input={<Input />}
-              value={newProduct.category_id}
-              onChange={changeHandler}
-              fullWidth
-            >
-              {categoryList.map((c) => (
-                <MenuItem key={c.id} value={c.id}>
-                  {c.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </div>
           <Grid container spacing={3}>
             <Grid item md={6}>
               <div className='form-group'>
-                <label htmlFor='material'>Số lượng sản phẩm trong kho</label>
+                <label htmlFor='category_id'>Loại sản phẩm</label>
+                <Select
+                  id='category_id'
+                  name='category_id'
+                  input={<Input />}
+                  value={newProduct.category_id}
+                  onChange={changeHandler}
+                  fullWidth
+                >
+                  {categoryList.map((c) => (
+                    <MenuItem key={c.id} value={c.id}>
+                      {c.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </div>
+            </Grid>
+            <Grid item md={6}>
+              <div className='form-group'>
+                <label htmlFor='status'> Trạng thái sản phẩm/ Độ mới (%) </label>
+                <TextField
+                  name='status'
+                  value={newProduct.status}
+                  onChange={changeHandler}
+                  fullWidth
+                />
+              </div>
+            </Grid>
+          </Grid>
+          <Grid container spacing={3}>
+            <Grid item md={6}>
+              <div className='form-group'>
+                <label htmlFor='number'>Số lượng sản phẩm trong kho</label>
                 <TextField
                   name='number'
                   value={newProduct.number}
@@ -122,7 +137,7 @@ const NewProduct = () => {
               <div className='form-group'>
                 <label htmlFor='price'>Giá sản phẩm</label>
                 <TextField
-                  type="number"
+                  type='number'
                   name='price'
                   value={newProduct.price}
                   onChange={changeHandler}
@@ -135,7 +150,7 @@ const NewProduct = () => {
               <div className='form-group'>
                 <label htmlFor='originPrice'>Giá gốc sản phẩm</label>
                 <TextField
-                  type="number"
+                  type='number'
                   name='originPrice'
                   value={newProduct.originPrice}
                   onChange={changeHandler}

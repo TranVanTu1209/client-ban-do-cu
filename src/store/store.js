@@ -17,3 +17,29 @@ const store = createStore(rootReducer, composeEnhancers(
 sagaMiddleware.run(rootSaga);
 
 export default store;
+
+// import React from 'react';
+// import HtmlToReact from 'html-to-react';
+
+// function SidebarText(props) {
+//     const { sidebar } = props;
+
+//     const renderHtml = (html) => {
+//         var htmlInput = `<div>${html}</idv>`;
+//         var htmlToReactParser = new HtmlToReact.Parser(React);
+//         return htmlToReactParser.parse(htmlInput);
+//     }
+
+//     return (
+//         <React.Fragment>
+//             <h5 className={`sidebar-title`} >
+//                 {renderHtml(sidebar.title)}
+//             </h5>
+//             <div className={`sidebar-content`}>
+//                 {renderHtml(sidebar.content)}
+//             </div>
+//         </React.Fragment>
+//     );
+// }
+
+// export default SidebarText;

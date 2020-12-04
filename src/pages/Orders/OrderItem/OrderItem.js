@@ -15,7 +15,7 @@ import { useDispatch } from "react-redux";
 const OrderItem = ({
   order: {
     id,
-    number,
+    amount,
     products,
     name,
     payment_method,
@@ -25,7 +25,7 @@ const OrderItem = ({
   },
 }) => {
   const dispatch = useDispatch();
-  const cartItemsMarkup = products.map((item) => (
+  const cartItemsMarkup = products?.map((item) => (
     <TableRow key={item?.product_id}>
       <TableCell>
         <img
@@ -74,7 +74,7 @@ const OrderItem = ({
         </Table>
       </TableContainer>
       <div className={classes.OrderInfo}>
-        <p>Tổng giá trị đơn : {(+number).toFixed(2)} đ</p>
+        <p>Tổng giá trị đơn : {(+ amount).toFixed(2)} đ</p>
         <h3>Thông tin người nhận</h3>
         <p>
           Họ tên : <strong>{name}</strong>

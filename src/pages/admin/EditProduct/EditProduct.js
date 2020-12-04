@@ -106,28 +106,44 @@ const EditProduct = () => {
                   required
                 />
               </div>
-              <div className='form-group'>
-                <label htmlFor='category_id'>Loại sản phẩm</label>
-                <Select
-                  id='category_id'
-                  name='category_id'
-                  value={editProduct.category_id || ""}
-                  onChange={changeHandler}
-                  fullWidth
-                >
-                  {categoryList.map((c) => (
-                    <MenuItem key={c.id} value={c.id}>
-                      {c.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-              </div>
               <Grid container spacing={3}>
                 <Grid item md={6}>
                   <div className='form-group'>
-                    <label htmlFor='material'>
-                      Số lượng sản phẩm trong kho
+                    <label htmlFor='category_id'>Loại sản phẩm</label>
+                    <Select
+                      id='category_id'
+                      name='category_id'
+                      value={editProduct.category_id || ""}
+                      onChange={changeHandler}
+                      fullWidth
+                    >
+                      {categoryList.map((c) => (
+                        <MenuItem key={c.id} value={c.id}>
+                          {c.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </div>
+                </Grid>
+                <Grid item md={6}>
+                  <div className='form-group'>
+                    <label htmlFor='status'>
+                      {" "}
+                      Trạng thái sản phẩm/ Độ mới (%){" "}
                     </label>
+                    <TextField
+                      name='status'
+                      value={editProduct.status || ""}
+                      onChange={changeHandler}
+                      fullWidth
+                    />
+                  </div>
+                </Grid>
+              </Grid>
+              <Grid container spacing={3}>
+                <Grid item md={6}>
+                  <div className='form-group'>
+                    <label htmlFor='number'>Số lượng sản phẩm trong kho</label>
                     <TextField
                       name='number'
                       value={editProduct.number || ""}
@@ -179,7 +195,7 @@ const EditProduct = () => {
               <Grid container spacing={3}>
                 <Grid item md={6}>
                   <div className='form-group'>
-                    <label htmlFor='price'>Màu sắc</label>
+                    <label htmlFor='color'>Màu sắc</label>
                     <TextField
                       name='color'
                       value={editProduct.color || ""}
@@ -191,7 +207,7 @@ const EditProduct = () => {
                 </Grid>
                 <Grid item md={6}>
                   <div className='form-group'>
-                    <label htmlFor='originPrice'>Kích cỡ</label>
+                    <label htmlFor='size'>Kích cỡ</label>
                     <TextField
                       name='size'
                       value={editProduct.size || ""}

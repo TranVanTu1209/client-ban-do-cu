@@ -48,59 +48,54 @@ export const createOrder = ({ cartItems, total }, receiverInfo, history) => (
     });
 };
 
-export const fetchOrders = () => (dispatch, getState) => {
-  const auth = getState().auth;
+export const fetchOrders = () => async (dispatch) => {
   dispatch({
     type: actionTypes.ORDER_REQUEST,
   });
-  let ordersData;
-  if (auth.email === "admin@gmail.com") {
-    ordersData = db.collection("orders");
-  } else {
-    ordersData = db.collection("orders").where("user", "==", auth.uid);
-  }
-  ordersData
-    .get()
-    .then((snapshot) => {
-      const orders = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      dispatch({
-        type: actionTypes.SET_ORDERS,
-        payload: orders,
-      });
-    })
-    .catch((err) => {
-      dispatch(setAlert(err.message, "Danger"));
-      dispatch({
-        type: actionTypes.ORDER_ERROR,
-        payload: err.message,
-      });
+  try {
+    const res = await axios.get("/orders");
+    dispatch({
+      type: actionTypes.SET_ORDERS,
+      payload: res.data.data,
     });
+  } catch (error) {
+    dispatch({
+      type: actionTypes.ORDER_ERROR,
+      payload: error.message || "Lỗi xảy ra",
+    });
+    dispatch(setAlert(error.message || "Lỗi xảy ra", "Danger"));
+  }
 };
 
-export const cancelOrder = (id) => (dispatch) => {
+export const cancelOrder = (id) => async (dispatch) => {
   dispatch({
     type: actionTypes.ORDER_REQUEST,
   });
-  db.collection("orders")
-    .doc(id)
-    .delete()
-    .then(() => {
-      dispatch({
-        type: actionTypes.CANCEL_ORDER,
-        payload: id,
-      });
-      dispatch(setAlert("Hủy đơn thành công", "Success"));
-    })
-    .catch((err) => {
-      dispatch(setAlert(err.message, "Danger"));
-      dispatch({
-        type: actionTypes.ORDER_ERROR,
-        payload: err.message,
-      });
+  try {
+    await axios.post(
+      "/cancel/order",
+      {
+        order_id: id,
+      },
+      {
+        headers: {
+          "Content-type": "application/json",
+          Accept: "application/json",
+        },
+      }
+    );
+    dispatch({
+      type: actionTypes.CANCEL_ORDER,
+      payload: id,
     });
+    dispatch(setAlert("Hủy đơn thành công", "Success"));
+  } catch (error) {
+    dispatch({
+      type: actionTypes.ORDER_ERROR,
+      payload: error.message || "Lỗi xảy ra",
+    });
+    dispatch(setAlert(error.message || "Lỗi xảy ra", "Danger"));
+  }
 };
 
 export const filterOrders = (type) => (dispatch, getState) => {

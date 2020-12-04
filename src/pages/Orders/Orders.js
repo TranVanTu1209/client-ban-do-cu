@@ -6,7 +6,7 @@ import {
   filterOrders,
   // fetchOrdersByUserId,
 } from "../../store/actions/order/orderAction";
-// import { fetchAllUsers } from "../../store/actions/user/userAction";
+import { fetchAllUsers } from "../../store/actions/user/userAction";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import OrderItem from "./OrderItem/OrderItem";
 import EmptyOrders from "./EmptyOrders/EmptyOrders";
@@ -33,11 +33,11 @@ const Orders = () => {
   }, []);
 
   useEffect(() => {
-    // dispatch(fetchOrders());
+    dispatch(fetchOrders());
   }, [dispatch]);
 
   useEffect(() => {
-    // dispatch(fetchAllUsers());
+    dispatch(fetchAllUsers());
   }, [dispatch]);
 
   useEffect(() => {
@@ -60,14 +60,14 @@ const Orders = () => {
             <Button
               variant='contained'
               className='bg-success'
-              onClick={() => dispatch(filterOrders("bank"))}
+              onClick={() => dispatch(filterOrders("1"))}
             >
               Đã thanh toán
             </Button>
             <Button
               variant='contained'
               className='bg-danger'
-              onClick={() => dispatch(filterOrders("check"))}
+              onClick={() => dispatch(filterOrders("2"))}
             >
               Chưa thanh toán
             </Button>

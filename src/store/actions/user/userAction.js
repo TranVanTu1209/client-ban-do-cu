@@ -1,24 +1,20 @@
 import * as actionTypes from '../../actionTypes';
-import { db } from '../../../firebase/firebase';
 import { setAlert } from '../alert/alertAction';
+import axios from '../../api/axios';
 
-export const fetchAllUsers = () => dispatch => {
+export const fetchAllUsers = () => async dispatch => {
   dispatch({ type: actionTypes.USER_REQUEST });
-  db.collection('users').get()
-    .then(snapshot => {
-      const users = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-      dispatch({
-        type: actionTypes.GET_ALL_USERS,
-        payload: users
-      })
-    }).catch(err => {
-      dispatch({
-        type: actionTypes.USER_ERROR,
-        payload: err.message
-      });
-      dispatch(setAlert(err.message, 'Danger'));
+  try {
+    const res = await axios.get('/user');
+    dispatch({
+      type: actionTypes.GET_ALL_USERS,
+      payload: res.data.data,
+    })
+  } catch (error) {
+    dispatch({
+      type: actionTypes.USER_ERROR,
+      payload: error.message || 'Lỗi xảy ra',
     });
+    dispatch(setAlert(error.message || 'Lỗi xảy ra', 'Danger'));
+  }
 }

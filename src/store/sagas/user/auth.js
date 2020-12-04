@@ -10,14 +10,13 @@ import {
 } from "../../actions/user/authAction";
 import * as authApi from "../../api/user/auth";
 import axios from '../../api/axios';
-import history from '../../../utils/history';
 
 function* workerRegister(action) {
   yield put(registerStart());
   try {
     const res = yield authApi.registerRequest(action.userData);
     yield put(registerSuccess(res.data.access_token));
-    yield history.push('/');
+    window.location.reload();
     yield axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
   } catch (error) {
     yield put(registerFailed(error));
@@ -29,7 +28,7 @@ function* workerLogin(action) {
   try {
     const res = yield authApi.loginRequest(action.userData);
     yield put(loginSuccess(res.data.access_token));
-    yield history.push('/');
+    window.location.reload();
     yield axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access_token}`;
   } catch (error) {
     yield put(loginFailed(error));

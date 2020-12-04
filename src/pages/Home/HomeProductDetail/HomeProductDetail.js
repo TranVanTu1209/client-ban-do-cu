@@ -21,11 +21,12 @@ const HomeProductDetail = ({ show, close, product }) => {
           <img src={product.image} alt={product.name} />
           <div className={classes.RightInfo}>
             <p> {product.name} </p>
+            <p> Độ mới :  {product.status} % </p>
             <p>
-              Giá khuyến mại : <strong> {product.price} đ </strong>
+              Giá sản phẩm : <strong> {product.price} đ </strong>
             </p>
             <p>
-              Giá cũ{" "}
+              Giá gốc{" "}
               <span className='line-through'> {product.originPrice} đ </span>
             </p>
             <p>

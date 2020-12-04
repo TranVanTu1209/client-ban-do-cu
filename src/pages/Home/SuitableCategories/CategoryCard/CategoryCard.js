@@ -1,13 +1,13 @@
-import React from 'react';
-import classes from './CategoryCard.module.css';
+import React from "react";
+import classes from "./CategoryCard.module.css";
 
-const CategoryCard = ({ title, image }) => {
+const CategoryCard = ({ title, image, clicked }) => {
   return (
     <div className={classes.CategoryCard}>
-      <img src={image} alt={title} />
-      <p className="text-center"> {title} </p>
+      <img src={image} alt={title} onClick={clicked} />
+      <p className='text-center'> {title} </p>
     </div>
   );
-}
+};
 
 export default CategoryCard;
