@@ -50,6 +50,12 @@ const EditCategory = () => {
   return (
     <>
       <Paper className='p-4 bg-white rounded mt-3'>
+        {loading && <ImgLoader />}
+        {error && (
+          <Alert severity='error' className='mb-3'>
+            {error?.response?.data?.message || "Lỗi xảy ra. Vui lòng thử lại"}
+          </Alert>
+        )}
         {!loading && !error && (
           <>
             <h3 className='display-4 mb-3'>Cập nhật/Chỉnh sửa loại sản phẩm</h3>

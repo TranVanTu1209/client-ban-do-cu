@@ -37,15 +37,16 @@ const Orders = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(fetchAllUsers());
-  }, [dispatch]);
+    if (userInfo.role === 1) {
+      dispatch(fetchAllUsers());
+    }
+  }, [dispatch, userInfo.role]);
 
   useEffect(() => {
     if (user) {
       // dispatch(fetchOrdersByUserId(user));
     }
   }, [user, dispatch]);
-
   const orderItemsMarkup = orderItems.map((order) => (
     <OrderItem key={order.id} order={order} />
   ));

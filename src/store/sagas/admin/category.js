@@ -10,7 +10,7 @@ import {
   updateCategoryStart, updateCategorySuccess, updateCategoryFailed
  } from '../../actions/admin/category';
 import { createCategoryRequest, deleteCategoryRequest, updateCategoryRequest } from '../../api/admin/category';
-import history from 'history/browser';
+import history from '../../../utils/history';
 import { setAlert } from '../../actions/alert/alertAction';
 
 function* workerCreateCategory(action) {
@@ -34,7 +34,7 @@ function* workerUpdateCategory(action) {
   {
     yield updateCategoryRequest(action.cId, action.category);
     yield put(updateCategorySuccess(action.cId, action.category));
-    yield history.back();
+    yield history.push('/dashboard/category');
   } catch (error)
   {
     yield put(updateCategoryFailed(error));

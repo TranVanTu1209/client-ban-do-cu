@@ -1,3 +1,4 @@
+// thunk actions
 // cart
 export const SET_CART_DATA = 'SET_CART_DATA';
 export const ADD_TO_CART = 'ADD_TO_CART';
@@ -13,14 +14,16 @@ export const PAYMENT_FINISH = 'PAYMENT_FINISH';
 export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
 
 // auth
-export const START_AUTH = 'START_AUTH';
-export const FETCH_USERS = 'FETCH_USERS';
-export const LOGIN = 'LOGIN';
-export const LOGOUT = 'LOGOUT';
-export const GET_PROFILE = 'GET_PROFILE';
-export const UPDATE_PROFILE = 'UPDATE_PROFILE';
-export const SET_AUTH_USER = 'SET_AUTH_USER';
-export const AUTH_ERROR = 'AUTH_ERROR';
+// export const START_AUTH = 'START_AUTH';
+// export const FETCH_USERS = 'FETCH_USERS';
+// export const LOGIN = 'LOGIN';
+// export const LOGOUT = 'LOGOUT';
+// export const GET_PROFILE = 'GET_PROFILE';
+// export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+// export const SET_AUTH_USER = 'SET_AUTH_USER';
+// export const AUTH_ERROR = 'AUTH_ERROR';
+
+
 
 // product
 export const CREATE_PRODUCT = 'CREATE_PRODUCT';

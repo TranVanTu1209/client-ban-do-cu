@@ -48,12 +48,17 @@ export const createOrder = ({ cartItems, total }, receiverInfo, history) => (
     });
 };
 
-export const fetchOrders = () => async (dispatch) => {
+export const fetchOrders = () => async (dispatch, getState) => {
+  const { userInfo } = getState().profile;
+  let url = '/orders';
+  if(userInfo.role === 3) {
+    url = '/order/customer';
+  }
   dispatch({
     type: actionTypes.ORDER_REQUEST,
   });
   try {
-    const res = await axios.get("/orders");
+    const res = await axios.get(url);
     dispatch({
       type: actionTypes.SET_ORDERS,
       payload: res.data.data,

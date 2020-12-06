@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import classes from "./ProfileContent.module.css";
-import { Card, CardContent, Grid } from "@material-ui/core";
+import { Button, Card, CardContent, Grid } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
 import { updateProfile } from "../../../store/actions/user/authAction";
 import ImgLoader from "../../../components/UI/ImgLoader/ImgLoader";
 
 const ProfileContent = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.profile);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [gender, setGender] = useState("male");
+  const [phone_number, setPhoneNumber] = useState("");
+  const [gender, setGender] = useState("");
   const [age, setAge] = useState(1);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const ProfileContent = () => {
         setEmail(userInfo.email !== undefined ? userInfo.email : "");
         setAddress(userInfo.address !== undefined ? userInfo.address : "");
         setPhoneNumber(
-          userInfo.phoneNumber !== undefined ? userInfo.phoneNumber : ""
+          userInfo.phone_number !== undefined ? userInfo.phone_number : ""
         );
         setGender(userInfo.gender !== undefined ? userInfo.gender : "");
         setAge(userInfo.age !== undefined ? userInfo.age : 1);
@@ -34,7 +34,7 @@ const ProfileContent = () => {
 
   const updateProfileHandler = (e) => {
     e.preventDefault();
-    // dispatch(updateProfile(uid, { name, email, address, phoneNumber, gender, age }));
+    // dispatch(updateProfile({ name, email, address, phoneNumber, gender, age }));
   };
   return (
     <Card>
@@ -63,7 +63,7 @@ const ProfileContent = () => {
             <Grid item md={8}>
               <input
                 type='text'
-                value={phoneNumber}
+                value={phone_number}
                 onChange={(e) => setPhoneNumber(e.target.value)}
               />
             </Grid>
@@ -85,12 +85,18 @@ const ProfileContent = () => {
               Ảnh đại diện
             </Grid>
             <Grid item md={8}>
-              <Grid container>
+              <Grid container className='align-items-center'>
                 <Grid item md={6}>
-                  <img className={classes.Avatar} src="https://source.unsplash.com/random" alt=""/>
+                  <img
+                    className={classes.Avatar}
+                    src='https://source.unsplash.com/random'
+                    alt=''
+                  />
                 </Grid>
                 <Grid item md={6}>
-                  <button>Thay ảnh</button>
+                  <Button variant='contained' color='secondary'>
+                    Thay ảnh
+                  </Button>
                 </Grid>
               </Grid>
             </Grid>

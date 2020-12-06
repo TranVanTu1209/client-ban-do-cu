@@ -5,6 +5,7 @@ import watcherCategory from './public/category';
 import watcherAdminCategory from './admin/category';
 import watcherAdminProduct from './admin/product';
 import watcherProduct from './public/product';
+import watcherAdminCustomer from './admin/customer';
 
 function* rootSaga() {
   yield all([
@@ -14,6 +15,7 @@ function* rootSaga() {
     watcherAdminCategory(),
     watcherProduct(),
     watcherAdminProduct(),
+    watcherAdminCustomer(),
   ]);
 }
 

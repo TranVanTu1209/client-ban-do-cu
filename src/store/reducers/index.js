@@ -9,6 +9,7 @@ import userReducer from './user/userReducer';
 import productByCategoryReducer from './product/productByCategoryReducer';
 import { categoryListReducer, categoryDetailReducer } from './public/category';
 import { productListReducer, productDetailReducer } from './public/product';
+import listCustomerReducer from './admin/customer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   categoryDetail: categoryDetailReducer,
   productList: productListReducer,
   productDetail: productDetailReducer,
+  listCustomer: listCustomerReducer,
 });
 
 export default rootReducer;

@@ -16,30 +16,31 @@ const OrderItem = ({
   order: {
     id,
     amount,
-    products,
+    order_detail,
     name,
     payment_method,
     delivery_method,
     phone_number,
     address,
+    email,
   },
 }) => {
   const dispatch = useDispatch();
-  const cartItemsMarkup = products?.map((item) => (
+  const cartItemsMarkup = order_detail?.map((item) => (
     <TableRow key={item?.product_id}>
       <TableCell>
         <img
           className={classes.orderImage}
-          src={item?.image}
-          alt={formatProductTitle(item?.name)}
+          src={item?.products?.image}
+          alt={formatProductTitle(item?.products?.name)}
         />
       </TableCell>
       <TableCell component='th' scope='row'>
-        {formatProductTitle(item?.name, 10)}
+        {formatProductTitle(item?.products?.name, 10)}
       </TableCell>
-      <TableCell>{item?.price} đ</TableCell>
-      <TableCell>{item?.originPrice} đ</TableCell>
-      <TableCell>{item?.amount}</TableCell>
+      <TableCell>{item?.products?.price} đ</TableCell>
+      <TableCell>{item?.products?.originPrice} đ</TableCell>
+      <TableCell>{item?.number}</TableCell>
     </TableRow>
   ));
   return (
@@ -74,10 +75,13 @@ const OrderItem = ({
         </Table>
       </TableContainer>
       <div className={classes.OrderInfo}>
-        <p>Tổng giá trị đơn : {(+ amount).toFixed(2)} đ</p>
+        <p>Tổng giá trị đơn : {(+amount).toFixed(2)} đ</p>
         <h3>Thông tin người nhận</h3>
         <p>
           Họ tên : <strong>{name}</strong>
+        </p>
+        <p>
+          Email : <strong>{email}</strong>
         </p>
         <p>
           Số điện thoại : <strong>{phone_number}</strong>

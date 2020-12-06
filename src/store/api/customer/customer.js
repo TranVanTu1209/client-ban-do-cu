@@ -1,9 +1,9 @@
 import axios from '../axios';
 
-export const getCustomerList = async () => {
+export const getCustomerListRequest = async () => {
   return axios.get('/user');
 }
 
-export const deleteCustomer = async (uId) => {
-  return axios.delete(`/user/destroy/uId`);
+export const deleteCustomerRequest = async (uId) => {
+  return axios.delete(`/user/destroy/${uId}`);
 }

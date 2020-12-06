@@ -10,7 +10,6 @@ import {
   AUTH_LOGIN,
 } from "../../types/public";
 
-
 // sagas
 export const registerStart = () => ({
   type: AUTH_REGISTER_START,
