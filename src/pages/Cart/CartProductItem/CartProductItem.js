@@ -5,6 +5,7 @@ import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { useDispatch } from 'react-redux';
 import { removeItemFromCart, increaseAmount, decreaseAmount } from '../../../store/actions/cart/cartAction';
+import { formatMoney } from '../../../utils/formatMoney';
 
 const CartProductItem = forwardRef((props, ref) => {
   const dispatch = useDispatch();
@@ -33,9 +34,9 @@ const CartProductItem = forwardRef((props, ref) => {
           <div className={classes.Right}>
             <div>
               <p>
-                {price} đ/sp
+                {formatMoney(price)} đ/sp
               </p>
-              <p className="line-through"> {originPrice} đ/sp </p>
+              <p className="line-through"> {formatMoney(originPrice)} đ/sp </p>
             </div>
             <ButtonGroup size="small" aria-label="small outlined button group">
               <Button size="small" disabled={!(amount > 1)} onClick={() => dispatch(decreaseAmount(id))}>

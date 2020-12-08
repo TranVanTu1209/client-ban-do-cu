@@ -8,6 +8,7 @@ import {
 } from "../../../utils/products/products";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../../../store/actions/cart/cartAction";
+import { formatMoney } from "../../../utils/formatMoney";
 
 const HomeProduct = ({ product }) => {
   const dispatch = useDispatch();
@@ -33,6 +34,7 @@ const HomeProduct = ({ product }) => {
             product.image ||
             "https://salt.tikicdn.com/cache/280x280/ts/product/bd/de/40/f9cf4776701057cbce1476fc725364b2.jpg"
           }
+          onClick={openModal}
           alt={product.title}
         />
         <div>
@@ -40,8 +42,8 @@ const HomeProduct = ({ product }) => {
             {formatProductTitle(product.name)}
           </p>
           <div className={classes.Prices}>
-            <strong> {product.price} đ </strong>{" "}
-            <span className='line-through'> {product.originPrice} đ </span>
+            <strong> {formatMoney(product.price)} đ </strong>{" "}
+            <p className='line-through'> {formatMoney(product.originPrice)} đ </p>
           </div>
         </div>
         {email !== "admin@gmail.com" && (

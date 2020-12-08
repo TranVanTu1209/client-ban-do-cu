@@ -258,3 +258,6 @@ button:disabled {
 	margin-bottom: 10px;
 	font-size: 16px;
 }
+.d-none {
+	display: none;
+}

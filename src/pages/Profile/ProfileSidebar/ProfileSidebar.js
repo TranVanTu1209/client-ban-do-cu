@@ -4,8 +4,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import RoomIcon from '@material-ui/icons/Room';
+import { useHistory } from 'react-router-dom';
 
 const ProfileSidebar = () => {
+  const history = useHistory();
   return (
     <List component="nav">
       <ListItem button>
@@ -20,7 +22,7 @@ const ProfileSidebar = () => {
         </ListItemIcon>
         <ListItemText primary="Thông báo của tôi" />
       </ListItem>
-      <ListItem button>
+      <ListItem button onClick={() => history.push('/orders')} >
         <ListItemIcon>
           <ListAltIcon />
         </ListItemIcon>

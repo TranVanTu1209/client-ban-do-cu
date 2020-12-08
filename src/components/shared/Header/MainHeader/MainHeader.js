@@ -33,6 +33,12 @@ const MainHeader = () => {
           <span>Mua sắm ngay</span>
         </Link>
       </div>
+      <div className={classes.MainHeaderRight__Option}>
+        <Link to='/cart' className={classes.CartButton}>
+          <ShoppingCartIcon /> Giỏ hàng
+          <span className='badge badge-yellow'> {cartItems.length}</span>
+        </Link>
+      </div>
     </React.Fragment>
   );
 
@@ -59,7 +65,7 @@ const MainHeader = () => {
       </div>
       <div className={classes.MainHeaderRight__Option}>
         <Link to='/cart' className={classes.CartButton}>
-          <ShoppingCartIcon /> Giỏ hàng{" "}
+          <ShoppingCartIcon /> Giỏ hàng
           <span className='badge badge-yellow'> {cartItems.length}</span>
         </Link>
       </div>

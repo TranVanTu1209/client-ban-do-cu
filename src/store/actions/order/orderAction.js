@@ -50,9 +50,9 @@ export const createOrder = ({ cartItems, total }, receiverInfo, history) => (
 
 export const fetchOrders = () => async (dispatch, getState) => {
   const { userInfo } = getState().profile;
-  let url = '/orders';
-  if(userInfo.role === 3) {
-    url = '/order/customer';
+  let url = "/orders";
+  if (userInfo.role === 3) {
+    url = "/order/customer";
   }
   dispatch({
     type: actionTypes.ORDER_REQUEST,
@@ -143,32 +143,24 @@ export const filterOrders = (type) => (dispatch, getState) => {
 export const clearOrder = () => (dispatch) =>
   dispatch({ type: actionTypes.CLEAR_ORDER });
 
-export const fetchOrdersByUserId = (id) => (dispatch) => {
+export const fetchOrdersByUserId = (id) => (dispatch, getState) => {
+  const { orderItems } = getState().order;
   if (id === "all") {
     dispatch(fetchOrders());
   } else {
     dispatch({ type: actionTypes.ORDER_REQUEST });
-    db.collection("orders")
-      .where("user", "==", id)
-      .get()
-      .then((snapshot) => {
-        const orders = snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        dispatch({
-          type: actionTypes.SET_ORDERS,
-          payload: orders,
-        });
-      })
-      .catch((err) => {
-        dispatch(setAlert(err.message, "Danger"));
-        dispatch({
-          type: actionTypes.ORDER_ERROR,
-          payload: err.message,
-        });
+    try {
+      const orders = orderItems.filter((order) => order.user_id === id);
+      dispatch({
+        type: actionTypes.SET_ORDERS,
+        payload: orders,
       });
+    } catch (err) {
+      dispatch(setAlert(err.message, "Danger"));
+      dispatch({
+        type: actionTypes.ORDER_ERROR,
+        payload: err.message || 'Lỗi xảy ra',
+      });
+    }
   }
 };
-
-export const transactionWithPaypal = () => (dispatch) => {};

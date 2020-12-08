@@ -1,19 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import classes from "./ProfileContent.module.css";
 import { Button, Card, CardContent, Grid } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { updateProfile } from "../../../store/actions/user/authAction";
+import { updateProfile } from "../../../store/actions/user/profileAction";
 import ImgLoader from "../../../components/UI/ImgLoader/ImgLoader";
+import Alert from "@material-ui/lab/Alert";
+
+const acceptedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
 
 const ProfileContent = () => {
-  // const dispatch = useDispatch();
-  const { userInfo } = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
+  const imageRef = useRef();
+  const [file, setFile] = useState(null);
+  const { loading, userInfo, error } = useSelector((state) => state.profile);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState(1);
+  const [avatar, setAvatar] = useState("");
 
   useEffect(() => {
     if (userInfo) {
@@ -26,20 +32,48 @@ const ProfileContent = () => {
         );
         setGender(userInfo.gender !== undefined ? userInfo.gender : "");
         setAge(userInfo.age !== undefined ? userInfo.age : 1);
+        setAvatar(
+          userInfo.avatar
+            ? userInfo.avatar
+            : "https://source.unsplash.com/random"
+        );
       } catch (error) {
         console.log(error);
       }
     }
   }, [userInfo]);
 
+  const chooseImageHandler = () => {
+    imageRef.current.click();
+    console.log(imageRef);
+  };
+  const imageChangeHandler = (event) => {
+    const imageFile = event.target.files[0];
+    if(acceptedFileTypes.includes(imageFile.type)) {
+      setFile(imageFile);
+    } else {
+      alert('Vui lòng chọn file với định dạng (.png,.jpg,.jpeg)');
+    }
+  };
+  const updateAvatarHandler = () => {
+    
+  }
   const updateProfileHandler = (e) => {
     e.preventDefault();
-    // dispatch(updateProfile({ name, email, address, phoneNumber, gender, age }));
+    dispatch(
+      updateProfile({ name, email, address, phone_number, gender, age, avatar })
+    );
   };
   return (
     <Card>
       <CardContent>
         <p>Thông tin tài khoản</p>
+        {loading && <ImgLoader />}
+        {error && (
+          <Alert severity='error' className='mb-3'>
+            {error?.response?.data?.message || "Lỗi xảy ra. Vui lòng thử lại"}
+          </Alert>
+        )}
         <form
           className={classes.ProfileContent}
           onSubmit={updateProfileHandler}
@@ -76,6 +110,7 @@ const ProfileContent = () => {
               <input
                 type='email'
                 value={email}
+                disabled
                 onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
@@ -89,14 +124,32 @@ const ProfileContent = () => {
                 <Grid item md={6}>
                   <img
                     className={classes.Avatar}
-                    src='https://source.unsplash.com/random'
-                    alt=''
+                    src={avatar}
+                    alt='profile avatar'
+                  />
+                  <input
+                    type='file'
+                    className='d-none'
+                    ref={imageRef}
+                    onChange={imageChangeHandler}
                   />
                 </Grid>
                 <Grid item md={6}>
-                  <Button variant='contained' color='secondary'>
+                  {
+                    !file ? <Button
+                    variant='contained'
+                    color='secondary'
+                    onClick={chooseImageHandler}
+                  >
                     Thay ảnh
+                  </Button> : <Button
+                    variant='contained'
+                    color='primary'
+                    onClick={updateAvatarHandler}
+                  >
+                    Tải ảnh lên
                   </Button>
+                  }
                 </Grid>
               </Grid>
             </Grid>

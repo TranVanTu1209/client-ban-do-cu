@@ -5,6 +5,7 @@ import Backdrop from "../../../components/UI/Backdrop/Backdrop";
 import CloseIcon from "@material-ui/icons/Close";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemToCart } from "../../../store/actions/cart/cartAction";
+import { formatMoney } from "../../../utils/formatMoney";
 
 const HomeProductDetail = ({ show, close, product }) => {
   const dispatch = useDispatch();
@@ -23,11 +24,11 @@ const HomeProductDetail = ({ show, close, product }) => {
             <p> {product.name} </p>
             <p> Độ mới :  {product.status} % </p>
             <p>
-              Giá sản phẩm : <strong> {product.price} đ </strong>
+              Giá sản phẩm : <strong> {formatMoney(product.price)} đ </strong>
             </p>
             <p>
               Giá gốc{" "}
-              <span className='line-through'> {product.originPrice} đ </span>
+              <span className='line-through'> {formatMoney(product.originPrice) } đ </span>
             </p>
             <p>
               {product.description ?  product.description.replace(/<[^>]+>/g, '')  : "No description"}

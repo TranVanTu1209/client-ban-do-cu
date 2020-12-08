@@ -11,7 +11,6 @@ import {
 import * as authApi from "../../api/user/auth";
 import axios from "../../api/axios";
 import { setAlert } from "../../actions/alert/alertAction";
-import history from "../../../utils/history";
 
 function* workerRegister(action) {
   yield put(registerStart());

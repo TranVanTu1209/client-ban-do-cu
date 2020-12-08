@@ -4,6 +4,7 @@ import { TextField, Typography, Button } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setGiftCode } from '../../../store/actions/cart/cartAction';
+import { formatMoney } from '../../../utils/formatMoney';
 
 const CartSubTotal = ({ subTotal, code, tax, showCheckOutButton, showGiftCode }) => {
   const [gift, setGift] = useState(code || '');
@@ -33,19 +34,19 @@ const CartSubTotal = ({ subTotal, code, tax, showCheckOutButton, showGiftCode })
       <div className={classes.SubAmount}>
         <span>Tạm tính</span>
         <Typography>
-          {subTotal.toFixed(2)} đ
+          {formatMoney(subTotal)} đ
       </Typography>
       </div>
       <div className={classes.SubAmount}>
         <span>Thuế</span>
         <Typography>
-          {tax.toFixed(2)} đ
+          {formatMoney(tax)} đ
       </Typography>
       </div>
       <div className={classes.SubAmount}>
         <span>Thành tiền</span>
         <Typography className={classes.Total} >
-          {(subTotal + tax).toFixed(2)} đ
+          {formatMoney(subTotal + tax)} đ
       </Typography>
       </div>
       {

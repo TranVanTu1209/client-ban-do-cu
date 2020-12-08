@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   fetchOrders,
   filterOrders,
-  // fetchOrdersByUserId,
+  fetchOrdersByUserId,
 } from "../../store/actions/order/orderAction";
 import { fetchAllUsers } from "../../store/actions/user/userAction";
 import Spinner from "../../components/UI/Spinner/Spinner";
@@ -44,7 +44,7 @@ const Orders = () => {
 
   useEffect(() => {
     if (user) {
-      // dispatch(fetchOrdersByUserId(user));
+      dispatch(fetchOrdersByUserId(user));
     }
   }, [user, dispatch]);
   const orderItemsMarkup = orderItems.map((order) => (
@@ -85,7 +85,7 @@ const Orders = () => {
                     Tất cả
                   </MenuItem>
                   {users.map((user) => (
-                    <MenuItem key={user.id} value={user.uid}>
+                    <MenuItem key={user.id} value={user.id}>
                       {user.name}
                     </MenuItem>
                   ))}

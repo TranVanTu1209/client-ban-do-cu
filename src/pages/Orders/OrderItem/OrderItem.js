@@ -11,6 +11,7 @@ import {
 import { formatProductTitle } from "../../../utils/products/products";
 import { cancelOrder } from "../../../store/actions/order/orderAction";
 import { useDispatch } from "react-redux";
+import { formatMoney } from "../../../utils/formatMoney";
 
 const OrderItem = ({
   order: {
@@ -38,8 +39,8 @@ const OrderItem = ({
       <TableCell component='th' scope='row'>
         {formatProductTitle(item?.products?.name, 10)}
       </TableCell>
-      <TableCell>{item?.products?.price} đ</TableCell>
-      <TableCell>{item?.products?.originPrice} đ</TableCell>
+      <TableCell>{formatMoney(item?.products?.price)} đ</TableCell>
+      <TableCell>{formatMoney(item?.products?.originPrice)} đ</TableCell>
       <TableCell>{item?.number}</TableCell>
     </TableRow>
   ));
@@ -75,7 +76,7 @@ const OrderItem = ({
         </Table>
       </TableContainer>
       <div className={classes.OrderInfo}>
-        <p>Tổng giá trị đơn : {(+amount).toFixed(2)} đ</p>
+        <p>Tổng giá trị đơn : {formatMoney(+amount)} đ</p>
         <h3>Thông tin người nhận</h3>
         <p>
           Họ tên : <strong>{name}</strong>

@@ -2,8 +2,8 @@
 
 .ProfileContent input {
 	font-size: 14px;
-	padding: 6px 8px;
-	min-width: 350px;
+	padding: 8px;
+	min-width: 70%;
 }
 .ProfileContent input[type="radio"] {
 	min-width: auto;

@@ -13,6 +13,7 @@
 	width: 90%;
 	max-height: 160px;
 	object-fit: contain;
+	cursor: pointer;
 }
 .Title {
 	font-size: 14px;
