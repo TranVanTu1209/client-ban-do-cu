@@ -15,6 +15,7 @@ import { createOrder } from "../../store/actions/order/orderAction";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { useHistory } from "react-router-dom";
 import PaypalTransaction from "./PaypalTransaction/PaypalTransaction";
+import { formatMoney } from "../../utils/formatMoney";
 
 const Payment = () => {
   const dispatch = useDispatch();
@@ -161,6 +162,11 @@ const Payment = () => {
                       control={<Radio />}
                       label='Thanh toán khi nhận hàng'
                     />
+                    <FormControlLabel
+                      value='3'
+                      control={<Radio />}
+                      label='Thanh toán bằng ví MoMo'
+                    />
                   </RadioGroup>
                   {showPaypalBtn && (
                     <PaypalTransaction
@@ -178,7 +184,7 @@ const Payment = () => {
                   )}
                 </div>
               </div>
-              <h3 className='mb-2'>Tổng tiền : {total.toFixed(2)} đ </h3>
+              <h3 className='mb-2'>Tổng tiền : {formatMoney(total)} đ </h3>
               <Button
                 type='submit'
                 variant='contained'

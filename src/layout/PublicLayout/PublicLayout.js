@@ -1,10 +1,9 @@
 import React, { Fragment } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Footer from "../../components/shared/Footer/Footer";
 import Header from "../../components/shared/Header/Header";
-import Login from "../../pages/Login/Login";
-import _404 from "../../pages/_404/_404";
 import LazyWrapper from "../../utils/hoc/LazyWrapper";
+const Login = React.lazy(() => import("../../pages/Login/Login"));
 const Home = React.lazy(() => import("../../pages/Home/Home"));
 const Cart = React.lazy(() => import("../../pages/Cart/Cart"));
 const CategoryProducts = React.lazy(() =>
@@ -32,8 +31,12 @@ const PublicLayout = () => {
               <Cart />
             </LazyWrapper>
           </Route>
-          <Route path='/login' component={Login} />
-          <Route component={_404} />
+          <Route path='/Login'>
+            <LazyWrapper>
+              <Login />
+            </LazyWrapper>
+          </Route>
+          <Route render={() => <Redirect to='/' />} />
         </Switch>
       </div>
       <Footer />

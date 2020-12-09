@@ -10,12 +10,13 @@ const acceptedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
 
 const ProfileContent = () => {
   const dispatch = useDispatch();
+  const { provinces } = useSelector((state) => state.provinceList);
   const imageRef = useRef();
   const [file, setFile] = useState(null);
   const { loading, userInfo, error } = useSelector((state) => state.profile);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [address, setAddress] = useState("");
+  const [address, setAddress] = useState({});
   const [phone_number, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState(1);
@@ -24,14 +25,16 @@ const ProfileContent = () => {
   useEffect(() => {
     if (userInfo) {
       try {
-        setName(userInfo.name !== undefined ? userInfo.name : "");
-        setEmail(userInfo.email !== undefined ? userInfo.email : "");
-        setAddress(userInfo.address !== undefined ? userInfo.address : "");
-        setPhoneNumber(
-          userInfo.phone_number !== undefined ? userInfo.phone_number : ""
+        setName(userInfo.name ? userInfo.name : "");
+        setEmail(userInfo.email ? userInfo.email : "");
+        setAddress(
+          userInfo.address
+            ? provinces.find((p) => p.province_id === userInfo.address)
+            : {}
         );
-        setGender(userInfo.gender !== undefined ? userInfo.gender : "");
-        setAge(userInfo.age !== undefined ? userInfo.age : 1);
+        setPhoneNumber(userInfo.phone_number ? userInfo.phone_number : "");
+        setGender(userInfo.gender ? userInfo.gender : "");
+        setAge(userInfo.age ? userInfo.age : 1);
         setAvatar(
           userInfo.avatar
             ? userInfo.avatar
@@ -41,7 +44,7 @@ const ProfileContent = () => {
         console.log(error);
       }
     }
-  }, [userInfo]);
+  }, [userInfo, provinces]);
 
   const chooseImageHandler = () => {
     imageRef.current.click();
@@ -49,25 +52,29 @@ const ProfileContent = () => {
   };
   const imageChangeHandler = (event) => {
     const imageFile = event.target.files[0];
-    if(acceptedFileTypes.includes(imageFile.type)) {
+    if (acceptedFileTypes.includes(imageFile.type)) {
       setFile(imageFile);
     } else {
-      alert('Vui lòng chọn file với định dạng (.png,.jpg,.jpeg)');
+      alert("Vui lòng chọn file với định dạng (.png,.jpg,.jpeg)");
     }
   };
-  const updateAvatarHandler = () => {
-    
-  }
+  const updateAvatarHandler = () => {};
   const updateProfileHandler = (e) => {
     e.preventDefault();
     dispatch(
-      updateProfile({ name, email, address, phone_number, gender, age, avatar })
+      updateProfile({
+        name,
+        address: address.province_id,
+        phone_number,
+        gender,
+        age,
+      })
     );
   };
   return (
     <Card>
       <CardContent>
-        <p>Thông tin tài khoản</p>
+        <h3 className='mb-3'>Thông tin tài khoản</h3>
         {loading && <ImgLoader />}
         {error && (
           <Alert severity='error' className='mb-3'>
@@ -135,21 +142,23 @@ const ProfileContent = () => {
                   />
                 </Grid>
                 <Grid item md={6}>
-                  {
-                    !file ? <Button
-                    variant='contained'
-                    color='secondary'
-                    onClick={chooseImageHandler}
-                  >
-                    Thay ảnh
-                  </Button> : <Button
-                    variant='contained'
-                    color='primary'
-                    onClick={updateAvatarHandler}
-                  >
-                    Tải ảnh lên
-                  </Button>
-                  }
+                  {!file ? (
+                    <Button
+                      variant='contained'
+                      color='secondary'
+                      onClick={chooseImageHandler}
+                    >
+                      Thay ảnh
+                    </Button>
+                  ) : (
+                    <Button
+                      variant='contained'
+                      color='primary'
+                      onClick={updateAvatarHandler}
+                    >
+                      Tải ảnh lên
+                    </Button>
+                  )}
                 </Grid>
               </Grid>
             </Grid>
@@ -161,8 +170,9 @@ const ProfileContent = () => {
             <Grid item md={8}>
               <input
                 type='text'
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
+                value={address.province_name || ""}
+                disabled
+                onChange={() => {}}
               />
             </Grid>
           </Grid>
@@ -175,20 +185,20 @@ const ProfileContent = () => {
                 <input
                   type='radio'
                   name='gender'
-                  value='male'
-                  checked={gender === "male"}
+                  value='1'
+                  checked={gender === "1"}
                   onChange={(e) => setGender(e.target.value)}
-                />{" "}
+                />
                 Nam
               </label>
               <label>
                 <input
                   type='radio'
                   name='gender'
-                  value='female'
-                  checked={gender === "female"}
+                  value='2'
+                  checked={gender === "2"}
                   onChange={(e) => setGender(e.target.value)}
-                />{" "}
+                />
                 Nữ
               </label>
             </Grid>

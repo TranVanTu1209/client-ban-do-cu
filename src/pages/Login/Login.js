@@ -14,6 +14,7 @@ import Alert from "@material-ui/lab/Alert";
 
 const Login = () => {
   const dispatch = useDispatch();
+  const { provinces } = useSelector((state) => state.provinceList);
   const { loading, error } = useSelector((state) => state.auth);
   const { register, handleSubmit, watch, errors } = useForm();
   const [loginMode, setLoginMode] = useState(true);
@@ -29,10 +30,12 @@ const Login = () => {
     dispatch(login(data));
   };
   const onSignup = (data) => {
-    dispatch(registerSaga({
-      ...data,
-      password_confirmation: undefined,
-    }));
+    dispatch(
+      registerSaga({
+        ...data,
+        password_confirmation: undefined,
+      })
+    );
   };
   const onInvalid = (err) => {
     console.log(err);
@@ -68,7 +71,6 @@ const Login = () => {
             />
             {errors.name && (
               <small className='error-text'>
-                
                 {errors.name.message || "Vui lòng điền tên người dùng"}
               </small>
             )}
@@ -90,7 +92,6 @@ const Login = () => {
           />
           {errors.email && (
             <small className='error-text'>
-              
               {errors.email.message || "Vui lòng nhập email hợp lệ"}
             </small>
           )}
@@ -115,15 +116,22 @@ const Login = () => {
         )}
         {!loginMode && (
           <div className={classes.FormGroup}>
-            <input
-              className={`${errors.address ? "error-input" : ""}`}
-              placeholder='Địa chỉ'
-              type='text'
-              name='address'
-              ref={register({
-                required: true,
-              })}
-            />
+            {
+              <select
+                className={`${errors.address ? "error-input" : ""}`}
+                name='address'
+                ref={register({
+                  required: true,
+                })}
+              >
+                <option value=''>Vui lòng chọn 1 tỉnh thành</option>
+                {provinces.map((p) => (
+                  <option key={p.province_id} value={p.province_id}>
+                    {p.province_name}
+                  </option>
+                ))}
+              </select>
+            }
             {errors.address && (
               <small className='error-text'> Địa chỉ không hợp lệ </small>
             )}
@@ -233,7 +241,6 @@ const Login = () => {
             </div>
           )}
           <p className='mt-2'>
-            
             Quên mật khẩu ?
             <Link to='/reset-password' className='btn'>
               Đổi mật khẩu

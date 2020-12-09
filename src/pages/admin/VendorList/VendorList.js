@@ -20,7 +20,7 @@ import Alert from "@material-ui/lab/Alert";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ConfirmDelete from "../../../components/shared/ConfirmDelete/ConfirmDelete";
 
-const Customers = () => {
+const VendorList = () => {
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -43,7 +43,7 @@ const Customers = () => {
   return (
     <div>
       <div className='d-flex align-items-center justify-content-between py-2'>
-        <h3>Danh sách khách hàng</h3>
+        <h3>Danh sách nhà cung cấp</h3>
       </div>
       {loading && <ImgLoader />}
       {error && (
@@ -110,4 +110,4 @@ const Customers = () => {
   );
 };
 
-export default Customers;
+export default VendorList;

@@ -23,7 +23,7 @@ export const getProfileFailed = (error) => ({
   payload: error,
 });
 
-export const updateProfile = (uId, userData) => ({ type: PROFILE_UPDATE, uId, userData });
+export const updateProfile = (userData) => ({ type: PROFILE_UPDATE, userData });
 
 export const updateProfileStart = () => ({ type: PROFILE_UPDATE_START });
 

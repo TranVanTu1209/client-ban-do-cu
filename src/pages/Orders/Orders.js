@@ -3,7 +3,7 @@ import classes from "./Orders.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchOrders,
-  filterOrders,
+  // filterOrders,
   fetchOrdersByUserId,
 } from "../../store/actions/order/orderAction";
 import { fetchAllUsers } from "../../store/actions/user/userAction";
@@ -61,14 +61,14 @@ const Orders = () => {
             <Button
               variant='contained'
               className='bg-success'
-              onClick={() => dispatch(filterOrders("1"))}
+              // onClick={() => dispatch(filterOrders("1"))}
             >
               Đã thanh toán
             </Button>
             <Button
               variant='contained'
               className='bg-danger'
-              onClick={() => dispatch(filterOrders("2"))}
+              // onClick={() => dispatch(filterOrders("2"))}
             >
               Chưa thanh toán
             </Button>
@@ -95,7 +95,8 @@ const Orders = () => {
           </ul>
         </div>
         <div className={classes.OrderList}>
-          {orderItems.length > 0 ? orderItemsMarkup : <EmptyOrders />}
+          {orderItems.length > 0 && orderItemsMarkup}
+          {!loading && orderItems.length === 0 && <EmptyOrders />}
         </div>
       </div>
     </React.Fragment>

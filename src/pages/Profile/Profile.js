@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 
 const Profile = () => {
   const history = useHistory();
-
   useEffect(() => {
     window.scrollTo({
       top: 0,

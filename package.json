@@ -15,7 +15,7 @@
     "firebase": "^7.23.0",
     "history": "^5.0.0",
     "jwt-decode": "^3.1.1",
-    "netlify-cli": "^2.69.0",
+    "netlify-cli": "^2.69.3",
     "react": "^16.13.1",
     "react-async-script-loader": "^0.3.0",
     "react-dom": "^16.13.1",

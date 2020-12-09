@@ -10,11 +10,13 @@ const reducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
     case actionTypes.PROFILE_GET_START:
+    case actionTypes.PROFILE_UPDATE_START:
       return {
         ...state,
         loading: true,
       };
     case actionTypes.PROFILE_GET_SUCCESS:
+    case actionTypes.PROFILE_UPDATE_SUCCESS:
       return {
         error: null,
         userInfo: payload,
@@ -27,6 +29,7 @@ const reducer = (state = initialState, action) => {
         error: null,
       };
     case actionTypes.PROFILE_GET_FAILED:
+    case actionTypes.PROFILE_UPDATE_FAILED:
       return {
         ...state,
         error: payload,

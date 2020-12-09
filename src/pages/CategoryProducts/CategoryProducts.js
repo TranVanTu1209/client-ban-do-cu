@@ -16,6 +16,14 @@ const CategoryProducts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
+  useEffect(() => {
     if (categoryId) {
       dispatch(getProductsByCategory(categoryId));
     }
@@ -24,7 +32,6 @@ const CategoryProducts = () => {
   const categoryProductMarkup = productList
     ?.slice(0, 4)
     .map((p) => <HomeProduct key={p.id} product={p} />);
-
   return (
     <React.Fragment>
       {loading && <Spinner />}
