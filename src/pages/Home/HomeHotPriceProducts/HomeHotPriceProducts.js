@@ -65,7 +65,7 @@ const HomeHotPriceProducts = () => {
 
   useEffect(() => {
     if (category) {
-      setHomeProducts(products.filter((p) => p.category === category));
+      setHomeProducts(products.filter((p) => p.category_id === category));
     }
   }, [category, products]);
 

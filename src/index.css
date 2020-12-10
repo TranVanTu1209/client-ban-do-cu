@@ -152,7 +152,7 @@ button:disabled {
 	position: absolute;
 	z-index: 30;
 	background-color: white;
-	width: 100%;
+	min-width: 250px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 	top: 25px;
 	height: 0;
@@ -168,6 +168,7 @@ button:disabled {
 	margin-bottom: 10px;
 	transition: all 0.3s ease-in-out;
 	padding: 8px;
+
 }
 .custom-select-menu-item:last-child {
 	margin-bottom: 0;
