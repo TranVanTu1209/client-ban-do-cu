@@ -53,6 +53,8 @@ export const fetchOrders = () => async (dispatch, getState) => {
   let url = "/orders";
   if (userInfo.role === 3) {
     url = "/order/customer";
+  } else if(userInfo.role === 2) {
+    url = "/orders/vendor";
   }
   dispatch({
     type: actionTypes.ORDER_REQUEST,

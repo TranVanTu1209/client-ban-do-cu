@@ -27,7 +27,7 @@ const Sidebar = () => {
         </Typography>
       ));
   }
-  if(!loading && !error) {
+  if (!loading && !error) {
     sidebarItemsMarkup = categoryList.map((item) => (
       <SidebarItem
         key={item.id}
@@ -37,7 +37,7 @@ const Sidebar = () => {
       />
     ));
   }
-  
+
   return <div className={classes.Sidebar}>{sidebarItemsMarkup}</div>;
 };
 
