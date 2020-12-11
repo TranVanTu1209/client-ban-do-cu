@@ -3,7 +3,7 @@ import classes from "./Orders.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import {
   fetchOrders,
-  // filterOrders,
+  filterOrders,
   fetchOrdersByUserId,
 } from "../../store/actions/order/orderAction";
 import { fetchAllUsers } from "../../store/actions/user/userAction";
@@ -57,18 +57,24 @@ const Orders = () => {
         <div className={classes.OrdersHeader}>
           <h3>Danh sách đơn hàng ({orderItems?.length} đơn hàng) </h3>
           <ul className={classes.OrdersFilter}>
-            <Button onClick={() => dispatch(fetchOrders())}>Tất cả đơn</Button>
             <Button
+              onClick={() => dispatch(fetchOrders())}
+            >
+              Tất cả đơn
+            </Button>
+            <Button
+              disabled={orderItems.length === 0}
               variant='contained'
               className='bg-success'
-              // onClick={() => dispatch(filterOrders("1"))}
+              onClick={() => dispatch(filterOrders("1"))}
             >
               Đã thanh toán
             </Button>
             <Button
+              disabled={orderItems.length === 0}
               variant='contained'
               className='bg-danger'
-              // onClick={() => dispatch(filterOrders("2"))}
+              onClick={() => dispatch(filterOrders("2"))}
             >
               Chưa thanh toán
             </Button>
@@ -76,6 +82,7 @@ const Orders = () => {
               <FormControl className={classes.UserList}>
                 <InputLabel id='user-order-select'>Khách hàng</InputLabel>
                 <Select
+                  disabled={orderItems.length === 0}
                   labelId='user-order-select'
                   id='user-order-select-options'
                   value={user}

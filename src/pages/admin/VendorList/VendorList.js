@@ -9,41 +9,40 @@ import {
   TableBody,
   Checkbox,
   IconButton,
+  Button,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getListCustomers,
-  deleteCustomer,
-} from "../../../store/actions/admin/customer";
+import { getListVendors } from "../../../store/actions/admin/vendor";
 import ImgLoader from "../../../components/UI/ImgLoader/ImgLoader";
 import Alert from "@material-ui/lab/Alert";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ConfirmDelete from "../../../components/shared/ConfirmDelete/ConfirmDelete";
+import { useHistory } from "react-router-dom";
 
 const VendorList = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const { loading, error, customers } = useSelector(
-    (state) => state.listCustomer
-  );
+  const { loading, error, vendors } = useSelector((state) => state.listVendor);
   useEffect(() => {
-    dispatch(getListCustomers());
+    dispatch(getListVendors());
   }, [dispatch]);
 
   const closeConfirm = () => setShowConfirm(false);
   const openConfirm = () => setShowConfirm(true);
 
-  const deleteProductHandler = () => {
-    if (selectedCustomer) {
-      dispatch(deleteCustomer(selectedCustomer));
-      closeConfirm();
-    }
-  };
   return (
     <div>
       <div className='d-flex align-items-center justify-content-between py-2'>
         <h3>Danh sách nhà cung cấp</h3>
+        <Button
+          variant='contained'
+          color='primary'
+          onClick={() => history.push("/dashboard/vendor/new")}
+        >
+          Tạo mới nhà cung cấp
+        </Button>
       </div>
       {loading && <ImgLoader />}
       {error && (
@@ -68,7 +67,7 @@ const VendorList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {customers.map((c) => (
+                {vendors.map((c) => (
                   <TableRow key={c.id}>
                     <TableCell>
                       <Checkbox
@@ -81,7 +80,7 @@ const VendorList = () => {
                     <TableCell>{c.phone_number || ""}</TableCell>
                     <TableCell> {c.address || ""} </TableCell>
                     <TableCell> {c.age || ""} </TableCell>
-                    <TableCell>{c.gender === "male" ? "Nữ" : "Nam"}</TableCell>
+                    <TableCell>{(c.gender === "male" || c.gender === "1" ) ? "Nam" : "Nữ"}</TableCell>
                     <TableCell>
                       <IconButton
                         onClick={() => {
@@ -98,11 +97,7 @@ const VendorList = () => {
             </Table>
           </TableContainer>
           {showConfirm && (
-            <ConfirmDelete
-              show={showConfirm}
-              close={closeConfirm}
-              clicked={deleteProductHandler}
-            />
+            <ConfirmDelete show={showConfirm} close={closeConfirm} />
           )}
         </>
       )}

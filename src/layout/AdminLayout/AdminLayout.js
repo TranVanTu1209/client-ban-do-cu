@@ -27,6 +27,9 @@ const Products = React.lazy(() =>
 const NewProduct = React.lazy(() =>
   import("../../pages/admin/NewProduct/NewProduct")
 );
+const NewVendor = React.lazy(() =>
+  import("../../pages/admin/NewVendor/NewVendor")
+);
 const Home = React.lazy(() => import("../../pages/admin/Home/Home"));
 
 const AdminLayout = () => {
@@ -69,6 +72,11 @@ const AdminLayout = () => {
               <Route path='/dashboard/customer'>
                 <LazyWrapper>
                   <Customers />
+                </LazyWrapper>
+              </Route>
+              <Route path='/dashboard/vendor/new'>
+                <LazyWrapper>
+                  <NewVendor />
                 </LazyWrapper>
               </Route>
               <Route path='/dashboard/vendor'>

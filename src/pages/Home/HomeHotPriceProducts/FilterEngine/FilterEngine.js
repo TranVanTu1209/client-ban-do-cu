@@ -21,6 +21,7 @@ const FilterEngine = ({
     700000,
     800000,
     900000,
+    10000000,
   ]);
   const { categoryList } = useSelector((state) => state.categoryList);
   const priceRangesMarkup = priceRanges.map((price) => (

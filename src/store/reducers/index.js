@@ -11,6 +11,7 @@ import { categoryListReducer, categoryDetailReducer } from "./public/category";
 import { productListReducer, productDetailReducer } from "./public/product";
 import listCustomerReducer from "./admin/customer";
 import { provinceListReducer } from "./public/address";
+import listVendorReducer from "./admin/vendor";
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   productDetail: productDetailReducer,
   listCustomer: listCustomerReducer,
   provinceList: provinceListReducer,
+  listVendor: listVendorReducer,
 });
 
 export default rootReducer;

@@ -1,5 +1,5 @@
 import { PRODUCT_LIST_GET, PRODUCT_DETAIL_GET } from "../../types/public";
-import { put, takeEvery } from "redux-saga/effects";
+import { put, takeEvery, select } from "redux-saga/effects";
 import {
   getProductListSuccess,
   getProductListStart,
@@ -8,15 +8,22 @@ import {
   getProductDetailSuccess,
   getProductDetailFailed,
 } from "../../actions/public/product";
+import { getProductListByVendorRequest } from "../../api/vendor/product";
 import {
   getProductListRequest,
   getSingleProductRequest,
 } from "../../api/public/product";
 
 function* workerGetProductList() {
+  const { profile } = yield select();
   yield put(getProductListStart());
   try {
-    const res = yield getProductListRequest();
+    let res;
+    if (profile?.userInfo?.role === 2) {
+      res = yield getProductListByVendorRequest();
+    } else {
+      res = yield getProductListRequest();
+    }
     yield put(getProductListSuccess(res.data.data));
   } catch (error) {
     yield put(getProductListFailed(error));

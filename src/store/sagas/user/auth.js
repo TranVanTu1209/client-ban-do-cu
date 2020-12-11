@@ -16,9 +16,14 @@ function* workerRegister(action) {
   yield put(registerStart());
   try {
     const res = yield authApi.registerRequest(action.userData);
-    yield put(registerSuccess(res.data.access_token));
-    yield put(setAlert("Đăng ký thành công", "Success"));
-    window.location.href = "/";
+    if (action.userData.role === 2) {
+      yield put(setAlert("Tạo mới nhà cung cấp thành công", "Success"));
+      window.location.href = "/dashboard/vendor";
+    } else {
+      yield put(registerSuccess(res.data.access_token));
+      yield put(setAlert("Đăng ký thành công", "Success"));
+      window.location.href = "/";
+    }
   } catch (error) {
     yield put(registerFailed(error));
   }

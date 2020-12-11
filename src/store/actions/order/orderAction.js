@@ -96,6 +96,11 @@ export const cancelOrder = (id) => async (dispatch) => {
       payload: id,
     });
     dispatch(setAlert("Hủy đơn thành công", "Success"));
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    })
   } catch (error) {
     dispatch({
       type: actionTypes.ORDER_ERROR,
@@ -107,6 +112,7 @@ export const cancelOrder = (id) => async (dispatch) => {
 
 export const filterOrders = (type) => (dispatch, getState) => {
   const { email, uid } = getState().auth;
+  dispatch(fetchOrders());
   dispatch({
     type: actionTypes.ORDER_REQUEST,
   });
