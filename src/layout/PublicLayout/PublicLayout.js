@@ -31,7 +31,7 @@ const PublicLayout = () => {
               <Cart />
             </LazyWrapper>
           </Route>
-          <Route path='/Login'>
+          <Route path='/login'>
             <LazyWrapper>
               <Login />
             </LazyWrapper>

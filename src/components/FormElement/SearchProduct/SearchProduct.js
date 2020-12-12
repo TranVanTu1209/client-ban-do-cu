@@ -41,7 +41,6 @@ const SearchProduct = () => {
   const searchResultItems = productsResult.map((p) => (
     <SearchResultItem key={p.id} product={p} showButton />
   ));
-
   return (
     <div className={classes.SearchProduct}>
       <input
@@ -53,12 +52,10 @@ const SearchProduct = () => {
       />
       {showResult ? (
         <button onClick={clearResultList}>
-          {" "}
-          <CloseIcon />{" "}
+          <CloseIcon />
         </button>
       ) : (
         <button onClick={() => ref.current.focus()}>
-          {" "}
           <SearchIcon /> Tìm kiếm
         </button>
       )}

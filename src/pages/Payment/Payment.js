@@ -52,18 +52,21 @@ const Payment = () => {
   useEffect(() => {
     setTotal(delivery_method === "1" ? subTotal + tax + 25 : subTotal + tax);
   }, [delivery_method, subTotal, tax]);
-
   const onConfirmCheckout = (e) => {
     e.preventDefault();
-    const receiverInfo = {
-      name,
-      address,
-      phone_number,
-      delivery_method,
-      payment_method,
-      message,
-    };
-    dispatch(createOrder({ cartItems, total }, receiverInfo, history));
+    if (!userInfo) {
+      history.push("/login");
+    } else {
+      const receiverInfo = {
+        name,
+        address,
+        phone_number,
+        delivery_method,
+        payment_method,
+        message,
+      };
+      dispatch(createOrder({ cartItems, total }, receiverInfo, history));
+    }
   };
   return (
     <React.Fragment>

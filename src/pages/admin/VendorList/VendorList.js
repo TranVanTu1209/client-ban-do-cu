@@ -23,7 +23,6 @@ const VendorList = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
   const { loading, error, vendors } = useSelector((state) => state.listVendor);
   useEffect(() => {
     dispatch(getListVendors());
@@ -80,11 +79,12 @@ const VendorList = () => {
                     <TableCell>{c.phone_number || ""}</TableCell>
                     <TableCell> {c.address || ""} </TableCell>
                     <TableCell> {c.age || ""} </TableCell>
-                    <TableCell>{(c.gender === "male" || c.gender === "1" ) ? "Nam" : "Nữ"}</TableCell>
+                    <TableCell>
+                      {c.gender === "male" || c.gender === "1" ? "Nam" : "Nữ"}
+                    </TableCell>
                     <TableCell>
                       <IconButton
                         onClick={() => {
-                          setSelectedCustomer(c.id);
                           openConfirm();
                         }}
                       >

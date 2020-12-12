@@ -53,7 +53,7 @@ export const fetchOrders = () => async (dispatch, getState) => {
   let url = "/orders";
   if (userInfo.role === 3) {
     url = "/order/customer";
-  } else if(userInfo.role === 2) {
+  } else if (userInfo.role === 2) {
     url = "/orders/vendor";
   }
   dispatch({
@@ -99,8 +99,8 @@ export const cancelOrder = (id) => async (dispatch) => {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: 'smooth',
-    })
+      behavior: "smooth",
+    });
   } catch (error) {
     dispatch({
       type: actionTypes.ORDER_ERROR,
@@ -167,7 +167,7 @@ export const fetchOrdersByUserId = (id) => (dispatch, getState) => {
       dispatch(setAlert(err.message, "Danger"));
       dispatch({
         type: actionTypes.ORDER_ERROR,
-        payload: err.message || 'Lỗi xảy ra',
+        payload: err.message || "Lỗi xảy ra",
       });
     }
   }
