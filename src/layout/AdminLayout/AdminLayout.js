@@ -30,6 +30,8 @@ const NewProduct = React.lazy(() =>
 const NewVendor = React.lazy(() =>
   import("../../pages/admin/NewVendor/NewVendor")
 );
+
+const Profit = React.lazy(() => import("../../pages/stats/Profit"));
 const Home = React.lazy(() => import("../../pages/admin/Home/Home"));
 
 const AdminLayout = () => {
@@ -40,7 +42,12 @@ const AdminLayout = () => {
       <div className='lg-container mt-2'>
         <Grid container>
           <Grid item md={2}>
-            <SideMenu showCategoryLink showListVendorLink showCustomerLink />
+            <SideMenu
+              showCategoryLink
+              showListVendorLink
+              showCustomerLink
+              showProfitLink
+            />
           </Grid>
           <Grid item md={10}>
             <Switch>
@@ -92,6 +99,11 @@ const AdminLayout = () => {
               <Route exact path='/dashboard/category/new'>
                 <LazyWrapper>
                   <NewCategory />
+                </LazyWrapper>
+              </Route>
+              <Route path='/dashboard/profit'>
+                <LazyWrapper>
+                  <Profit />
                 </LazyWrapper>
               </Route>
               <Route exact path='/dashboard/category/edit/:cId'>

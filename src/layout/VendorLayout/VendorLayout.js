@@ -11,6 +11,7 @@ const Products = React.lazy(() =>
   import("../../pages/admin/Products/Products")
 );
 const Orders = React.lazy(() => import("../../pages/Orders/Orders"));
+const Profit = React.lazy(() => import("../../pages/stats/Profit"));
 const NewProduct = React.lazy(() =>
   import("../../pages/admin/NewProduct/NewProduct")
 );
@@ -45,6 +46,11 @@ const VendorLayout = () => {
               <Route path='/dashboard/product'>
                 <LazyWrapper>
                   <Products />
+                </LazyWrapper>
+              </Route>
+              <Route path='/dashboard/profit'>
+                <LazyWrapper>
+                  <Profit />
                 </LazyWrapper>
               </Route>
               <Route path='/login'>

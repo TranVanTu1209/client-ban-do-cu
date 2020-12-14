@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { formatProductTitle } from "../../../utils/products/products";
 import { cancelOrder } from "../../../store/actions/order/orderAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { formatMoney } from "../../../utils/formatMoney";
 
 const OrderItem = ({
@@ -26,6 +26,7 @@ const OrderItem = ({
     email,
   },
 }) => {
+  const { userInfo } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   const cartItemsMarkup = order_detail?.map((item) => (
     <TableRow key={item?.product_id}>
@@ -50,16 +51,21 @@ const OrderItem = ({
         <p>
           Đơn hàng : <strong>{id}</strong>
         </p>
-        {payment_method !== "1" ? (
-          <button
-            className='btn btn-danger'
-            onClick={() => dispatch(cancelOrder(id))}
-          >
-            Hủy đơn
-          </button>
-        ) : (
-          <button className='btn btn-success'>Đã thanh toán</button>
-        )}
+        <div>
+          {/* {!(userInfo.role === 3) && (
+            <button className='btn btn-success mr-2'>Giao hàng</button>
+          )} */}
+          {payment_method === "2" ? (
+            <button
+              className='btn btn-danger'
+              onClick={() => dispatch(cancelOrder(id))}
+            >
+              Hủy đơn
+            </button>
+          ) : (
+            <button className='btn btn-success'>Đã thanh toán</button>
+          )}
+        </div>
       </header>
       <TableContainer>
         <Table className={classes.table} aria-label='order list table'>

@@ -46,7 +46,7 @@ const SideMenu = ({
         </ListItem>
         {showProfitLink && (
           <ListItem button>
-            <Link to='/dashboard/profile' className='dashboard-link'>
+            <Link to='/dashboard/profit' className='dashboard-link'>
               Doanh thu
             </Link>
           </ListItem>
