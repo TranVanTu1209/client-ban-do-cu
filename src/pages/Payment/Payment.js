@@ -52,6 +52,7 @@ const Payment = () => {
   useEffect(() => {
     setTotal(delivery_method === "1" ? subTotal + tax + 25 : subTotal + tax);
   }, [delivery_method, subTotal, tax]);
+  
   const onConfirmCheckout = (e) => {
     e.preventDefault();
     if (!userInfo) {
@@ -68,6 +69,7 @@ const Payment = () => {
       dispatch(createOrder({ cartItems, total }, receiverInfo, history));
     }
   };
+ 
   return (
     <React.Fragment>
       {loading && <Spinner />}
@@ -164,11 +166,6 @@ const Payment = () => {
                       value='2'
                       control={<Radio />}
                       label='Thanh toán khi nhận hàng'
-                    />
-                    <FormControlLabel
-                      value='3'
-                      control={<Radio />}
-                      label='Thanh toán bằng ví MoMo'
                     />
                   </RadioGroup>
                   {showPaypalBtn && (

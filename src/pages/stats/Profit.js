@@ -13,7 +13,7 @@ const Profit = () => {
   useEffect(() => {
     const onFetchProfit = async () => {
       try {
-        const res = await axios.get("/");
+        const res = await axios.get("/statistics/order/vendor");
         console.log(res.data);
       } catch (error) {}
     };

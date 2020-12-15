@@ -16,7 +16,7 @@ const ProfileContent = () => {
   const { loading, userInfo, error } = useSelector((state) => state.profile);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [address, setAddress] = useState({});
+  const [address, setAddress] = useState("");
   const [phone_number, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [age, setAge] = useState(1);
@@ -170,9 +170,10 @@ const ProfileContent = () => {
             <Grid item md={8}>
               <input
                 type='text'
-                value={address.province_name || ""}
-                disabled
-                onChange={() => {}}
+                value={address?.province_name || ""}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                }}
               />
             </Grid>
           </Grid>

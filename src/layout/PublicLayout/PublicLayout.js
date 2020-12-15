@@ -36,7 +36,7 @@ const PublicLayout = () => {
               <Login />
             </LazyWrapper>
           </Route>
-          <Route render={() => <Redirect to='/' />} />
+          <Route render={() => <Redirect to='/login' />} />
         </Switch>
       </div>
       <Footer />
