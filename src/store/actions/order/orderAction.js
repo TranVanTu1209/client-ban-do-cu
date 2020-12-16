@@ -172,3 +172,12 @@ export const fetchOrdersByUserId = (id) => (dispatch, getState) => {
     }
   }
 };
+
+export const shipOrderSuccess = (oId, updatedOrder) => (dispatch) => {
+  if (oId) {
+    dispatch({
+      type: actionTypes.SHIP_ORDER_SUCCESS,
+      payload: { oId, updatedOrder },
+    });
+  }
+};

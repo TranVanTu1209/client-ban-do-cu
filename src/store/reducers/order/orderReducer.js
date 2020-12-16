@@ -1,56 +1,64 @@
-import * as actionTypes from '../../actionTypes';
+import * as actionTypes from "../../actionTypes";
 
 const initialState = {
   orderItems: [],
   loading: false,
-  error: null
-}
+  error: null,
+};
 
 const reducer = (state = initialState, action) => {
   const { type, payload } = action;
-  switch (type)
-  {
+  switch (type) {
     case actionTypes.ORDER_REQUEST:
       return {
         ...state,
         loading: true,
-        error: false
-      }
+        error: false,
+      };
     case actionTypes.SET_ORDERS:
       return {
         ...state,
         orderItems: payload,
         loading: false,
-        error: false
-      }
+        error: false,
+      };
     case actionTypes.CREATE_ORDER:
       return {
         ...state,
         orderItems: [payload, ...state.orderItems],
         loading: false,
-        error: false
-      }
+        error: false,
+      };
     case actionTypes.FETCH_ORDERS:
       return {
         ...state,
         orderItems: payload,
         loading: false,
-        error: false
-      }
+        error: false,
+      };
     case actionTypes.CANCEL_ORDER:
       return {
         ...state,
-        orderItems: state.orderItems.filter(order => order.id !== payload),
-        loading: false
-      }
+        orderItems: state.orderItems.filter((order) => order.id !== payload),
+        loading: false,
+      };
     case actionTypes.ORDER_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
-      }
-    default: return state;
+        loading: false,
+      };
+    case actionTypes.SHIP_ORDER_SUCCESS:
+      return {
+        ...state,
+        orderItems: state.orderItems.map((order) =>
+          order.id === payload.oId ? payload.updatedOrder : order
+        ),
+        loading: false,
+      };
+    default:
+      return state;
   }
-}
+};
 
 export default reducer;

@@ -23,7 +23,6 @@ const HomeHotPriceProducts = () => {
   useEffect(() => {
     dispatch(getProductList());
   }, [dispatch]);
-
   useEffect(() => {
     setHomeProducts(
       products.slice(
@@ -32,13 +31,11 @@ const HomeHotPriceProducts = () => {
       )
     );
   }, [currentPage, products]);
-
   useEffect(() => {
     if (priceRange > 0) {
       setHomeProducts(products.filter((p) => p.price < priceRange));
     }
   }, [priceRange, products]);
-
   useEffect(() => {
     if (order) {
       switch (order) {
@@ -62,14 +59,12 @@ const HomeHotPriceProducts = () => {
       }
     }
   }, [order]);
-
   useEffect(() => {
     if (category) {
-      setHomeProducts(products.filter((p) => p.category_id === category));
+      setHomeProducts(products.filter((p) => p.category_id === category.id));
     }
   }, [category, products]);
-
-  const handlePaginationChange = (event, value) => {
+  const handlePaginationChange = (_, value) => {
     setCurrentPage(value - 1);
     window.scrollTo({
       top: 470,
@@ -77,7 +72,6 @@ const HomeHotPriceProducts = () => {
       behavior: "smooth",
     });
   };
-
   return (
     <div className={classes.HomeHotPriceProducts}>
       {loading && <Spinner />}

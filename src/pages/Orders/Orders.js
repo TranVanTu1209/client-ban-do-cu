@@ -57,11 +57,7 @@ const Orders = () => {
         <div className={classes.OrdersHeader}>
           <h3>Danh sách đơn hàng ({orderItems?.length} đơn hàng) </h3>
           <ul className={classes.OrdersFilter}>
-            <Button
-              onClick={() => dispatch(fetchOrders())}
-            >
-              Tất cả đơn
-            </Button>
+            <Button onClick={() => dispatch(fetchOrders())}>Tất cả đơn</Button>
             <Button
               disabled={orderItems.length === 0}
               variant='contained'

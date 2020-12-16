@@ -37,7 +37,7 @@ const FilterEngine = ({
     <li
       key={cate.id}
       className='custom-select-menu-item'
-      onClick={() => onChangeCategory(cate.id)}
+      onClick={() => onChangeCategory(cate)}
     >
       {cate.name}
     </li>
@@ -82,7 +82,7 @@ const FilterEngine = ({
         </ul>
       </li>
       <li className='custom-select'>
-        <span> {category ? category : "Danh mục sản phẩm"} </span>
+        <span> {category ? category.name : "Danh mục sản phẩm"} </span>
         <ul className='custom-select-menu'>{catesMarkup}</ul>
       </li>
     </ul>

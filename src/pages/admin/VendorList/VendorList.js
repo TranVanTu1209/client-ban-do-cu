@@ -12,7 +12,10 @@ import {
   Button,
 } from "@material-ui/core";
 import { useSelector, useDispatch } from "react-redux";
-import { getListVendors } from "../../../store/actions/admin/vendor";
+import {
+  getListVendors,
+  deleteVendor,
+} from "../../../store/actions/admin/vendor";
 import ImgLoader from "../../../components/UI/ImgLoader/ImgLoader";
 import Alert from "@material-ui/lab/Alert";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -24,12 +27,21 @@ const VendorList = () => {
   const dispatch = useDispatch();
   const [showConfirm, setShowConfirm] = useState(false);
   const { loading, error, vendors } = useSelector((state) => state.listVendor);
+  const [selectedVendor, setSelectedVendor] = useState(null);
+
   useEffect(() => {
     dispatch(getListVendors());
   }, [dispatch]);
 
   const closeConfirm = () => setShowConfirm(false);
   const openConfirm = () => setShowConfirm(true);
+
+  const deleteVendorHandler = () => {
+    if (selectedVendor) {
+      dispatch(deleteVendor(selectedVendor));
+      closeConfirm();
+    }
+  };
 
   return (
     <div>
@@ -66,26 +78,27 @@ const VendorList = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {vendors.map((c) => (
-                  <TableRow key={c.id}>
+                {vendors.map((v) => (
+                  <TableRow key={v.id}>
                     <TableCell>
                       <Checkbox
                         color='primary'
                         inputProps={{ "aria-label": "secondary checkbox" }}
                       />
                     </TableCell>
-                    <TableCell>{c.name || ""}</TableCell>
-                    <TableCell> {c.email || ""} </TableCell>
-                    <TableCell>{c.phone_number || ""}</TableCell>
-                    <TableCell> {c.address || ""} </TableCell>
-                    <TableCell> {c.age || ""} </TableCell>
+                    <TableCell>{v.name || ""}</TableCell>
+                    <TableCell> {v.email || ""} </TableCell>
+                    <TableCell>{v.phone_number || ""}</TableCell>
+                    <TableCell> {v.address || ""} </TableCell>
+                    <TableCell> {v.age || ""} </TableCell>
                     <TableCell>
-                      {c.gender === "male" || c.gender === "1" ? "Nam" : "Nữ"}
+                      {v.gender === "male" || v.gender === "1" ? "Nam" : "Nữ"}
                     </TableCell>
                     <TableCell>
                       <IconButton
                         onClick={() => {
                           openConfirm();
+                          setSelectedVendor(v.id);
                         }}
                       >
                         <DeleteIcon color='secondary' />
@@ -97,7 +110,11 @@ const VendorList = () => {
             </Table>
           </TableContainer>
           {showConfirm && (
-            <ConfirmDelete show={showConfirm} close={closeConfirm} />
+            <ConfirmDelete
+              show={showConfirm}
+              close={closeConfirm}
+              clicked={deleteVendorHandler}
+            />
           )}
         </>
       )}
