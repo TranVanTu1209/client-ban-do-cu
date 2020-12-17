@@ -44,7 +44,10 @@ const Orders = () => {
 
   useEffect(() => {
     if (user) {
-      dispatch(fetchOrdersByUserId(user));
+      dispatch(fetchOrders());
+      setTimeout(() => {
+        dispatch(fetchOrdersByUserId(user));
+      }, 2000);
     }
   }, [user, dispatch]);
   const orderItemsMarkup = orderItems.map((order) => (
@@ -78,7 +81,6 @@ const Orders = () => {
               <FormControl className={classes.UserList}>
                 <InputLabel id='user-order-select'>Khách hàng</InputLabel>
                 <Select
-                  disabled={orderItems.length === 0}
                   labelId='user-order-select'
                   id='user-order-select-options'
                   value={user}

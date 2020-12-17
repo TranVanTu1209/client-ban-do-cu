@@ -152,13 +152,15 @@ export const clearOrder = () => (dispatch) =>
   dispatch({ type: actionTypes.CLEAR_ORDER });
 
 export const fetchOrdersByUserId = (id) => (dispatch, getState) => {
-  const { orderItems } = getState().order;
+ 
   if (id === "all") {
     dispatch(fetchOrders());
   } else {
+    const { orderItems } = getState().order;
+
     dispatch({ type: actionTypes.ORDER_REQUEST });
     try {
-      const orders = orderItems.filter((order) => order.user_id === id);
+      const orders = orderItems.filter((order) => order.user_id === +id);
       dispatch({
         type: actionTypes.SET_ORDERS,
         payload: orders,
