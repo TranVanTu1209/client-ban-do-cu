@@ -12,10 +12,12 @@ import { formatMoney } from "../../../utils/formatMoney";
 
 const HomeProduct = ({ product }) => {
   const dispatch = useDispatch();
-  const { email } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.profile);
   const [showProductDetail, setShowProductDetail] = useState(false);
   const closeModal = () => setShowProductDetail(false);
   const openModal = () => setShowProductDetail(true);
+
+  console.log(product);
 
   return (
     <React.Fragment>
@@ -42,13 +44,13 @@ const HomeProduct = ({ product }) => {
             {formatProductTitle(product.name)}
           </p>
           <div className={classes.Prices}>
-            <strong> {formatMoney(product.price)} đ </strong>{" "}
-            <p className='line-through'> {formatMoney(product.originPrice)} đ </p>
+            <strong> {formatMoney(product.price)} đ </strong>
+            <p className='line-through'>{formatMoney(product.originPrice)} đ</p>
           </div>
         </div>
-        {email !== "admin@gmail.com" && (
+        {userInfo.role === 3 && (
           <React.Fragment>
-            {+product.number <= 0 ? (
+            {+product.number < 1 ? (
               <div className={classes.SoldOutCard}>Đã hết hàng</div>
             ) : (
               <button

@@ -27,11 +27,12 @@ const ProfileContent = () => {
       try {
         setName(userInfo.name ? userInfo.name : "");
         setEmail(userInfo.email ? userInfo.email : "");
-        setAddress(
-          userInfo.address
-            ? provinces.find((p) => p.province_id === userInfo.address)
-            : {}
-        );
+        // setAddress(
+        //   userInfo.address
+        //     ? provinces.find((p) => p.province_id === userInfo.address)
+        //     : {}
+        // );
+        setAddress(userInfo.address ? userInfo.address : "");
         setPhoneNumber(userInfo.phone_number ? userInfo.phone_number : "");
         setGender(userInfo.gender ? userInfo.gender : "");
         setAge(userInfo.age ? userInfo.age : 1);
@@ -48,7 +49,6 @@ const ProfileContent = () => {
 
   const chooseImageHandler = () => {
     imageRef.current.click();
-    console.log(imageRef);
   };
   const imageChangeHandler = (event) => {
     const imageFile = event.target.files[0];
@@ -64,7 +64,7 @@ const ProfileContent = () => {
     dispatch(
       updateProfile({
         name,
-        address: address.province_id,
+        address: address,
         phone_number,
         gender,
         age,
@@ -168,13 +168,19 @@ const ProfileContent = () => {
               Địa chỉ
             </Grid>
             <Grid item md={8}>
-              <input
-                type='text'
-                value={address?.province_name || ""}
+              <select
+                name='address'
+                value={address || ""}
                 onChange={(e) => {
                   setAddress(e.target.value);
                 }}
-              />
+              >
+                {provinces.map((p) => (
+                  <option key={p.province_id} value={p.province_id}>
+                    {p.province_name}
+                  </option>
+                ))}
+              </select>
             </Grid>
           </Grid>
           <Grid className={classes.FormGroup} container spacing={2}>

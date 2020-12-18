@@ -9,7 +9,7 @@ import { formatMoney } from "../../../utils/formatMoney";
 
 const HomeProductDetail = ({ show, close, product }) => {
   const dispatch = useDispatch();
-  const { email } = useSelector((state) => state.auth);
+  const { userInfo } = useSelector((state) => state.profile);
 
   return (
     <React.Fragment>
@@ -22,16 +22,21 @@ const HomeProductDetail = ({ show, close, product }) => {
           <img src={product.image} alt={product.name} />
           <div className={classes.RightInfo}>
             <p> {product.name} </p>
-            <p> Độ mới :  {product.status} % </p>
+            <p> Độ mới : {product.status} % </p>
             <p>
               Giá sản phẩm : <strong> {formatMoney(product.price)} đ </strong>
             </p>
             <p>
               Giá gốc{" "}
-              <span className='line-through'> {formatMoney(product.originPrice) } đ </span>
+              <span className='line-through'>
+                {" "}
+                {formatMoney(product.originPrice)} đ{" "}
+              </span>
             </p>
             <p>
-              {product.description ?  product.description.replace(/<[^>]+>/g, '')  : "No description"}
+              {product.description
+                ? product.description.replace(/<[^>]+>/g, "")
+                : "No description"}
             </p>
             <p>
               Chất liệu : <span> {product.material} </span>
@@ -43,9 +48,9 @@ const HomeProductDetail = ({ show, close, product }) => {
               Kích cỡ : <span> {product.size} </span>
             </p>
             <p className='text-red'>Freeship khi đặt hàng 2 sản phẩm trở lên</p>
-            {email !== "admin@gmail.com" && (
+            {userInfo.role !== 3 && (
               <React.Fragment>
-                {+product.number <= 0 ? (
+                {+product.number < 1 ? (
                   <span className='badge badge-yellow'>Đã hết hàng</span>
                 ) : (
                   <button

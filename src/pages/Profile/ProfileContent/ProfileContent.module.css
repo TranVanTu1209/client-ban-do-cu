@@ -1,20 +1,21 @@
 /** @format */
 
-.ProfileContent input {
-	font-size: 14px;
-	padding: 8px;
-	min-width: 70%;
+.ProfileContent input,
+.ProfileContent select {
+  font-size: 14px;
+  padding: 8px;
+  min-width: 70%;
 }
 .ProfileContent input[type="radio"] {
-	min-width: auto;
-	margin-left: 10px;
-	cursor: pointer;
+  min-width: auto;
+  margin-left: 10px;
+  cursor: pointer;
 }
 .FormGroup {
-	margin-top: 10px !important;
+  margin-top: 10px !important;
 }
 .Avatar {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
 }
