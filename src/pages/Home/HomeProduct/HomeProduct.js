@@ -6,13 +6,12 @@ import {
   formatProductTitle,
   calculateReductionPercentage,
 } from "../../../utils/products/products";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItemToCart } from "../../../store/actions/cart/cartAction";
 import { formatMoney } from "../../../utils/formatMoney";
 
 const HomeProduct = ({ product }) => {
   const dispatch = useDispatch();
-  const { userInfo } = useSelector((state) => state.profile);
   const [showProductDetail, setShowProductDetail] = useState(false);
   const closeModal = () => setShowProductDetail(false);
   const openModal = () => setShowProductDetail(true);
@@ -48,20 +47,18 @@ const HomeProduct = ({ product }) => {
             <p className='line-through'>{formatMoney(product.originPrice)} đ</p>
           </div>
         </div>
-        {userInfo.role === 3 && (
-          <React.Fragment>
-            {+product.number < 1 ? (
-              <div className={classes.SoldOutCard}>Đã hết hàng</div>
-            ) : (
-              <button
-                className={classes.AddToCartBtn}
-                onClick={() => dispatch(addItemToCart(product))}
-              >
-                Thêm vào giỏ
-              </button>
-            )}
-          </React.Fragment>
-        )}
+        <React.Fragment>
+          {+product.number < 1 ? (
+            <div className={classes.SoldOutCard}>Đã hết hàng</div>
+          ) : (
+            <button
+              className={classes.AddToCartBtn}
+              onClick={() => dispatch(addItemToCart(product))}
+            >
+              Thêm vào giỏ
+            </button>
+          )}
+        </React.Fragment>
       </div>
       {showProductDetail && (
         <HomeProductDetail
